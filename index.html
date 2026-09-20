@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>作戰養成計畫</title>
 <style>
 :root{--bg:#0b0e12;--panel:#151a20;--panel2:#1d242c;--line:#303943;--text:#eef3f7;--muted:#96a3af;--accent:#f2c94c;--ok:#62d394;--danger:#ff6b6b}
@@ -286,6 +286,10 @@ input,select{background:#fff8e8;color:#493426;border-color:#987052}
 #topChallenge h1{margin:0;font-size:18px;letter-spacing:.08em}
 #topChallengeText{display:block;margin-top:5px;font-size:15px}
 #topChallengeCountdown{font-variant-numeric:tabular-nums;letter-spacing:.08em}
+
+html{touch-action:pan-x pan-y;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{min-width:320px;overscroll-behavior:none}
+input,select,textarea,button{font-size:16px}
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -986,6 +990,10 @@ goHome();
 
 updateTopChallenge();
 setInterval(updateTopChallenge,1000);
+
+document.addEventListener("gesturestart",e=>e.preventDefault(),{passive:false});
+document.addEventListener("gesturechange",e=>e.preventDefault(),{passive:false});
+document.addEventListener("gestureend",e=>e.preventDefault(),{passive:false});
 </script>
 
 <script>
