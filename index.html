@@ -297,6 +297,31 @@ html,body{
   -webkit-text-size-adjust:100% !important;
   text-size-adjust:100% !important;
 }
+
+.goalHub{
+ background:#fff0d2;border:4px solid #69452f;padding:12px;margin:0 0 15px;
+ box-shadow:inset 0 0 0 3px #f7d8a7,4px 5px 0 rgba(92,58,38,.28)
+}
+.goalHubTitle{font-weight:900;font-size:18px;margin-bottom:9px}
+.goalHubActions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.goalHubActions button{width:100%}
+.goalSearch{margin-top:9px}
+.goalSearch input{width:100%;box-sizing:border-box}
+.homeGoalSearchResults{display:grid;gap:6px;margin-top:8px}
+.goalSearchItem{
+ padding:8px 10px;background:#f8d9a5;border:2px solid #8c5e3d;cursor:pointer;
+ box-shadow:2px 2px 0 #69452f;font-weight:700
+}
+.goalSearchItem small{display:block;font-weight:400;opacity:.75;margin-top:2px}
+.goalDirectory{display:grid;gap:9px;margin-top:12px}
+.goalDirectoryCard{
+ padding:12px;background:#fff0d2;border:3px solid #704b32;
+ box-shadow:3px 3px 0 #5b3b28;cursor:pointer
+}
+.goalDirectoryCard b{display:block;font-size:16px}
+.goalDirectoryCard small{display:block;margin-top:4px;opacity:.78}
+@media(min-width:800px){.goalDirectory{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -385,6 +410,18 @@ html,body{
 <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h3>七大陣營</h3><button onclick="openHistory()">📋 完成紀錄</button>
 <button onclick="openMissed()">⚠️ 未完成任務</button></div>
 <small style="color:var(--muted)">選擇一個陣營進入獨立頁面，查看與管理該陣營的目標與任務。</small>
+
+<section class="goalHub">
+  <div class="goalHubTitle">🎯 目標導航</div>
+  <div class="goalHubActions">
+    <button onclick="openAllGoals()">📋 全部目標</button>
+    <button onclick="openRecentGoals()">🕘 最近目標</button>
+  </div>
+  <div class="goalSearch">
+    <input id="homeGoalSearch" placeholder="搜尋目標，例如：行政法、Python…" oninput="renderHomeGoalSearch()">
+  </div>
+  <div id="homeGoalSearchResults" class="homeGoalSearchResults"></div>
+</section>
 <div class="factionGrid" id="factionGrid"></div>
 </section>
 
@@ -1027,5 +1064,108 @@ setInterval(updateTopChallenge,1000);
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
 }
+
+function rememberRecentGoal(fi,gi){
+ let key="operationGrowthRecentGoals";
+ let arr=[];
+ try{arr=JSON.parse(localStorage.getItem(key)||"[]")}catch(e){}
+ arr=arr.filter(x=>!(Number(x.fi)===Number(fi)&&Number(x.gi)===Number(gi)));
+ arr.unshift({fi:Number(fi),gi:Number(gi),time:Date.now()});
+ localStorage.setItem(key,JSON.stringify(arr.slice(0,5)));
+}
+function allGoalEntries(){
+ let out=[];
+ (s.factions||[]).forEach((f,fi)=>(f.goals||[]).forEach((g,gi)=>out.push({f,g,fi,gi})));
+ return out;
+}
+function goalDirCard(x){
+ let pct=0;
+ try{
+   let max=maxLv[x.g.elite]||1;
+   pct=Math.min(100,Math.round((x.g.level/max)*100));
+ }catch(e){}
+ return `<div class="goalDirectoryCard" onclick="rememberRecentGoal(${x.fi},${x.gi});openGoal(${x.fi},${x.gi})">
+   <b>${esc(x.g.title)}</b>
+   <small>${esc(x.f.name||factionDefs[x.fi]?.name||"未分類")} ｜ E${x.g.elite||0} Lv.${x.g.level||1} ｜ 階段 ${pct}%</small>
+ </div>`;
+}
+function ensureGoalDirectoryPage(){
+ let page=document.getElementById("goalDirectoryPage");
+ if(!page){
+   page=document.createElement("section");
+   page.id="goalDirectoryPage"; page.className="page";
+   document.querySelector("main").appendChild(page);
+ }
+ return page;
+}
+function openAllGoals(){
+ let page=ensureGoalDirectoryPage();
+ document.querySelectorAll(".page").forEach(x=>x.style.display="none");
+ page.style.display="";
+ let entries=allGoalEntries();
+ page.innerHTML=`<button onclick="goHome()">← 返回首頁</button>
+ <h2>📋 全部目標</h2>
+ <input id="allGoalFilter" placeholder="搜尋所有目標…" oninput="filterAllGoals()" style="width:100%;box-sizing:border-box">
+ <div id="allGoalList" class="goalDirectory">${entries.length?entries.map(goalDirCard).join(""):"目前還沒有目標"}</div>`;
+}
+function filterAllGoals(){
+ let q=(document.getElementById("allGoalFilter")?.value||"").trim().toLowerCase();
+ let box=document.getElementById("allGoalList"); if(!box)return;
+ let entries=allGoalEntries().filter(x=>(x.g.title+" "+(x.f.name||"")).toLowerCase().includes(q));
+ box.innerHTML=entries.length?entries.map(goalDirCard).join(""):"找不到符合的目標";
+}
+function openRecentGoals(){
+ let page=ensureGoalDirectoryPage();
+ document.querySelectorAll(".page").forEach(x=>x.style.display="none");
+ page.style.display="";
+ let recent=[];
+ try{recent=JSON.parse(localStorage.getItem("operationGrowthRecentGoals")||"[]")}catch(e){}
+ let entries=recent.map(r=>{
+   let f=s.factions?.[r.fi],g=f?.goals?.[r.gi];
+   return f&&g?{f,g,fi:r.fi,gi:r.gi}:null;
+ }).filter(Boolean);
+ page.innerHTML=`<button onclick="goHome()">← 返回首頁</button>
+ <h2>🕘 最近目標</h2>
+ <div class="goalDirectory">${entries.length?entries.map(goalDirCard).join(""):"還沒有最近瀏覽的目標"}</div>`;
+}
+function renderHomeGoalSearch(){
+ let q=(document.getElementById("homeGoalSearch")?.value||"").trim().toLowerCase();
+ let box=document.getElementById("homeGoalSearchResults"); if(!box)return;
+ if(!q){box.innerHTML="";return}
+ let entries=allGoalEntries().filter(x=>(x.g.title+" "+(x.f.name||"")).toLowerCase().includes(q)).slice(0,6);
+ box.innerHTML=entries.length?entries.map(x=>`<div class="goalSearchItem" onclick="rememberRecentGoal(${x.fi},${x.gi});openGoal(${x.fi},${x.gi})">${esc(x.g.title)}<small>${esc(x.f.name||factionDefs[x.fi]?.name||"")}</small></div>`).join(""):"找不到目標";
+}
+
+
+/* v3.6 每日 00:00 / 12:00 存檔提醒
+   網頁關閉時無法主動跳出；只要在該時段之後第一次開啟/回到網頁，就提醒一次。 */
+function localDateKey(d=new Date()){
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+function backupReminderSlot(now=new Date()){
+  const hour=now.getHours();
+  return `${localDateKey(now)}-${hour>=12?"12":"00"}`;
+}
+function checkBackupReminder(){
+  const now=new Date();
+  const slot=backupReminderSlot(now);
+  const key="operationGrowthLastBackupReminder";
+  if(localStorage.getItem(key)===slot)return;
+
+  localStorage.setItem(key,slot);
+  const label=now.getHours()>=12 ? "中午 12 點" : "凌晨 12 點";
+  setTimeout(()=>{
+    if(confirm(`💾 存檔提醒\n\n已經過了今天的${label}。\n建議現在備份一次存檔。\n\n要立即下載 JSON 存檔嗎？`)){
+      if(typeof downloadJSONSave==="function") downloadJSONSave();
+    }
+  },350);
+}
+document.addEventListener("visibilitychange",()=>{
+  if(document.visibilityState==="visible")checkBackupReminder();
+});
+window.addEventListener("focus",checkBackupReminder);
+setInterval(checkBackupReminder,60000);
+setTimeout(checkBackupReminder,700);
+
 </script>
 </body></html>
