@@ -281,6 +281,11 @@ input,select{background:#fff8e8;color:#493426;border-color:#987052}
  box-shadow:inset 0 0 0 2px #fff1d0,3px 3px 0 #62422e;
 }
 
+
+#topChallenge{text-align:center;width:100%}
+#topChallenge h1{margin:0;font-size:18px;letter-spacing:.08em}
+#topChallengeText{display:block;margin-top:5px;font-size:15px}
+#topChallengeCountdown{font-variant-numeric:tabular-nums;letter-spacing:.08em}
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -291,7 +296,13 @@ input,select{background:#fff8e8;color:#493426;border-color:#987052}
 <link rel="apple-touch-icon" href="./icon-192.png">
 </head>
 <body>
-<header><h1>🌱 作戰養成計畫</h1><small>把喜歡的生活，一點一滴變成現實。　完成現實任務 → 收集作戰記錄 → 培養目標</small></header>
+<header id="challengeHeader" style="display:none">
+  <div id="topChallenge">
+    <h1>⏳ 限時挑戰</h1>
+    <small id="topChallengeText">目前沒有進行中的限時挑戰</small>
+    <div id="topChallengeCountdown" style="font-size:22px;font-weight:900;margin-top:6px">--天 --:--:--</div>
+  </div>
+</header>
 <main>
 <section class="card hero app-detail">
   <div class="avatar">◇</div>
@@ -489,7 +500,32 @@ function renderMissed(){
  <p class="muted">一次性任務在當日結束仍未完成時，會在下一次開啟 App 後記錄到這裡。</p>
  ${rows||'<div class="empty">目前沒有未完成紀錄。</div>'}`;
 }
+
+function updateTopChallenge(){
+ const text=document.getElementById("topChallengeText");
+ const cd=document.getElementById("topChallengeCountdown");
+ const header=document.getElementById("challengeHeader");
+ if(!text||!cd||!header)return;
+ purgeCompletedChallenges();
+ const now=Date.now();
+ const active=(s.challenges||[])
+   .filter(c=>!c.done && c.deadline && new Date(c.deadline).getTime()>now)
+   .sort((a,b)=>new Date(a.deadline)-new Date(b.deadline))[0];
+ if(!active){
+   header.style.display="none";
+   return;
+ }
+ header.style.display="";
+ text.textContent=active.title+(active.reward?`　｜　獎勵：${active.reward}`:"");
+ let ms=Math.max(0,new Date(active.deadline).getTime()-now);
+ let days=Math.floor(ms/86400000); ms%=86400000;
+ let hrs=Math.floor(ms/3600000); ms%=3600000;
+ let mins=Math.floor(ms/60000); ms%=60000;
+ let secs=Math.floor(ms/1000);
+ cd.textContent=`${days}天 ${String(hrs).padStart(2,"0")}:${String(mins).padStart(2,"0")}:${String(secs).padStart(2,"0")}`;
+}
 function render(){
+ purgeCompletedChallenges();
  ensureDailyTasks();
  document.getElementById("charName").textContent=s.name;
  document.getElementById("rank").textContent=`精英 ${s.elite} / E${s.elite}`;
@@ -596,6 +632,13 @@ function importJSONSave(ev){
  reader.readAsText(file,"utf-8");
 }
 function ensureChallenges(){if(!Array.isArray(s.challenges))s.challenges=[]}
+function purgeCompletedChallenges(){
+ ensureChallenges();
+ const before=s.challenges.length;
+ s.challenges=s.challenges.filter(c=>!c.done);
+ if(s.challenges.length!==before)save();
+}
+
 function toggleChallengeForm(){
  let x=document.getElementById("challengeForm");x.style.display=x.style.display==="block"?"none":"block";
 }
@@ -610,13 +653,38 @@ function addChallenge(){
  document.getElementById("challengeForm").style.display="none";renderChallenges();
 }
 function completeChallenge(id){
- ensureChallenges();let c=s.challenges.find(x=>x.id===id);if(!c||c.done)return;
- c.done=true;c.completedAt=new Date().toISOString();save();renderChallenges();
- alert(`限時挑戰完成！${c.reward?`\\n\\n獎勵：${c.reward}`:""}`);
+ ensureChallenges(); ensureHistory();
+ let idx=s.challenges.findIndex(c=>String(c.id)===String(id));
+ if(idx<0)return;
+ let c=s.challenges[idx];
+ if(c.done)return;
+ if(!confirm(`確認完成限時挑戰？\n\n${c.title}`))return;
+ let now=new Date();
+ // 完成後直接寫入完成紀錄，不再留在首頁／限時挑戰列表。
+ s.history.unshift({
+   id:Date.now(),
+   time:now.toISOString(),
+   kind:"challenge",
+   task:`限時挑戰｜${c.title}`,
+   taskType:"challenge",
+   challengeTitle:c.title,
+   challengeReward:c.reward||"",
+   deadline:c.deadline||"",
+   reward:null,
+   restored:false
+ });
+ addLog(`🏆 完成限時挑戰「${c.title}」${c.reward?`｜獎勵：${c.reward}`:""}`);
+ s.challenges.splice(idx,1);
+ save(); render(); renderChallenges(); updateTopChallenge();
 }
 function deleteChallenge(id){
- if(!confirm("確定刪除這個限時挑戰嗎？"))return;
- s.challenges=s.challenges.filter(x=>x.id!==id);save();renderChallenges();
+ ensureChallenges();
+ let idx=s.challenges.findIndex(c=>String(c.id)===String(id));
+ if(idx<0)return;
+ let c=s.challenges[idx];
+ if(!confirm(`確定刪除限時挑戰？\n\n${c.title}`))return;
+ s.challenges.splice(idx,1);
+ save(); render(); renderChallenges(); updateTopChallenge();
 }
 function formatCountdown(ms){
  if(ms<=0)return "已逾期";
@@ -640,6 +708,7 @@ function updateCountdowns(){
  });
 }
 function renderChallenges(){
+ purgeCompletedChallenges();
  ensureChallenges();let root=document.getElementById("challengeGrid");if(!root)return;
  if(!s.challenges.length){root.innerHTML='<div class="drop">目前沒有進行中的限時挑戰。</div>';return}
  let now=Date.now();
@@ -702,6 +771,14 @@ function restoreCompletedTask(historyId){
  rec.restoredAt=new Date().toISOString();
  save();renderHistory();
  alert(isRepeat?"已撤銷這一次完成紀錄。":"已恢復為未完成。");
+}
+
+function historyRewardText(r){
+ if(r.kind==="challenge"){
+   return r.challengeReward ? `🏆 挑戰獎勵：${esc(r.challengeReward)}` : "🏆 限時挑戰完成";
+ }
+ if(r.reward===null||r.reward===undefined)return "";
+ return books[r.reward] ? `＋ ${books[r.reward].name} ×1` : "";
 }
 function renderHistory(){
  ensureHistory();
@@ -906,6 +983,9 @@ function resetGame(){if(confirm("確定要清除所有角色、背包與任務�
 render();
 ensureChallenges();renderChallenges();
 goHome();
+
+updateTopChallenge();
+setInterval(updateTopChallenge,1000);
 </script>
 
 <script>
