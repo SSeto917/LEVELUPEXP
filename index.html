@@ -1578,6 +1578,1058 @@ main>.gameDock.persistentDock{
   #gameHomePreview .premiumFactionGrid .bigIcon{font-size:28px!important}
 }
 
+
+/* v5.6：陣營內採用「角色船塢／卡牌矩陣」排列 */
+
+/* 目標卡：寬螢幕 7 欄，逐級縮減 */
+.targetGrid{
+  display:grid!important;
+  grid-template-columns:repeat(7,minmax(0,1fr))!important;
+  gap:12px!important;
+  align-items:start!important;
+  margin-top:16px!important;
+}
+.rosterTargetCard{
+  appearance:none!important;
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  min-height:0!important;
+  aspect-ratio:.70!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:2px solid #7d8b99!important;
+  border-radius:4px!important;
+  background:#151b23!important;
+  color:#fff!important;
+  text-align:left!important;
+  box-shadow:0 5px 12px rgba(0,0,0,.32)!important;
+}
+.rosterTargetCard:hover{
+  transform:translateY(-3px)!important;
+  border-color:#e0b83e!important;
+  box-shadow:0 8px 18px rgba(0,0,0,.44)!important;
+}
+.rosterTop{
+  height:27px!important;
+  flex:0 0 27px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  padding:0 6px!important;
+  box-sizing:border-box!important;
+  background:linear-gradient(90deg,#253445,#171d26)!important;
+  border-bottom:1px solid #8994a0!important;
+}
+.rosterTop strong{
+  color:#fff!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  text-shadow:0 1px 2px #000!important;
+}
+.rosterTargetCard .targetBadge{
+  position:static!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  min-width:27px!important;
+  height:21px!important;
+  padding:0 4px!important;
+  border:0!important;
+  border-radius:2px!important;
+  background:#426b91!important;
+  color:#fff!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  box-shadow:none!important;
+}
+.rosterArt{
+  position:relative!important;
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:grid!important;
+  place-items:center!important;
+  border:0!important;
+  border-bottom:1px solid #aab4bf!important;
+  background:
+    linear-gradient(135deg,transparent 48%,rgba(255,255,255,.06) 49% 51%,transparent 52%),
+    radial-gradient(circle at 50% 40%,rgba(117,151,190,.36),transparent 42%),
+    linear-gradient(145deg,#384655,#1b2530 55%,#111820)!important;
+}
+.rosterArt:before{
+  content:""!important;
+  position:absolute!important;
+  inset:8px!important;
+  border:1px solid rgba(205,218,232,.22)!important;
+  clip-path:polygon(11px 0,100% 0,100% calc(100% - 11px),calc(100% - 11px) 100%,0 100%,0 11px)!important;
+}
+.rosterFactionMark{
+  position:relative!important;
+  z-index:2!important;
+  display:grid!important;
+  place-items:center!important;
+  width:58%!important;
+  aspect-ratio:1!important;
+  border:2px solid rgba(229,237,246,.75)!important;
+  transform:rotate(45deg)!important;
+  color:#f2f6fa!important;
+  font-size:clamp(22px,2.4vw,40px)!important;
+  text-shadow:0 2px 4px #000!important;
+  background:rgba(20,29,39,.48)!important;
+}
+.rosterFactionMark::first-letter{transform:rotate(-45deg)}
+.rosterArt>i{
+  position:absolute!important;
+  right:7px!important;
+  bottom:6px!important;
+  color:#d7a929!important;
+  font:900 10px/1 monospace!important;
+  font-style:normal!important;
+}
+.rosterInfo{
+  flex:0 0 59px!important;
+  box-sizing:border-box!important;
+  padding:6px 6px 5px!important;
+  background:linear-gradient(180deg,rgba(9,12,16,.94),#050709)!important;
+  border:0!important;
+}
+.rosterInfo .targetName{
+  overflow:hidden!important;
+  white-space:nowrap!important;
+  text-overflow:ellipsis!important;
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  text-shadow:0 1px 2px #000!important;
+}
+.rosterMeta{
+  margin-top:3px!important;
+  color:#bbc7d4!important;
+  font:800 8px/1.2 "Arial Narrow",Arial,sans-serif!important;
+  letter-spacing:.07em!important;
+}
+.rosterInfo .targetBar{
+  height:5px!important;
+  margin-top:5px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#28323d!important;
+}
+.rosterInfo .targetBar>i{
+  display:block!important;
+  height:100%!important;
+  background:#d5ad32!important;
+}
+.targetAdd.rosterTargetCard{
+  border-style:dashed!important;
+  border-color:#73808d!important;
+  background:#1a2129!important;
+}
+.rosterAdd{
+  width:100%!important;
+  height:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px!important;
+  color:#d9e1e9!important;
+}
+.rosterAdd b{
+  color:#e0b640!important;
+  font-size:35px!important;
+}
+.rosterAdd span{
+  color:#fff!important;
+  font-size:12px!important;
+  font-weight:900!important;
+}
+
+/* 實際任務：同樣用卡牌矩陣，不再垂直一條一條 */
+.goalTasks.missionRoster{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin-top:10px!important;
+}
+.goalTask.missionCard{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  aspect-ratio:.72!important;
+  padding:0!important;
+  gap:0!important;
+  overflow:hidden!important;
+  border:2px solid #7c8794!important;
+  border-radius:4px!important;
+  background:#10161d!important;
+  color:#fff!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.3)!important;
+}
+.missionCardTop{
+  height:25px!important;
+  flex:0 0 25px!important;
+  display:flex!important;
+  justify-content:space-between!important;
+  align-items:center!important;
+  padding:0 5px!important;
+  background:#222c36!important;
+  border-bottom:1px solid #8c98a4!important;
+}
+.missionRank{
+  display:grid!important;
+  place-items:center!important;
+  width:25px!important;
+  height:19px!important;
+  border-radius:2px!important;
+  background:#567493!important;
+  color:#fff!important;
+  font:900 11px/1 Arial,sans-serif!important;
+}
+.missionRank.diff3{background:#9b702c!important}
+.missionRank.diff5{background:#9a3f45!important}
+.missionType{
+  color:#d5dee8!important;
+  font:800 8px/1 Arial,sans-serif!important;
+  letter-spacing:.08em!important;
+}
+.missionArt{
+  position:relative!important;
+  flex:1 1 auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  gap:6px!important;
+  min-height:0!important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.05),transparent 35%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 2px,transparent 2px 6px),
+    linear-gradient(160deg,#405061,#1a222b)!important;
+  border-bottom:1px solid #9aa4af!important;
+}
+.missionGlyph{
+  display:grid!important;
+  place-items:center!important;
+  width:45%!important;
+  aspect-ratio:1!important;
+  border:2px solid #d9e3ed!important;
+  transform:rotate(45deg)!important;
+  color:#f4f7fa!important;
+  font-size:22px!important;
+  text-shadow:0 1px 2px #000!important;
+  background:rgba(8,12,16,.3)!important;
+}
+.missionArt small{
+  color:#e4ba3d!important;
+  font-size:9px!important;
+  font-weight:900!important;
+}
+.missionName{
+  flex:0 0 auto!important;
+  min-height:38px!important;
+  padding:6px 6px 4px!important;
+  box-sizing:border-box!important;
+  background:rgba(5,7,10,.95)!important;
+  color:#fff!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  line-height:1.25!important;
+  overflow:hidden!important;
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+}
+.missionCardBottom{
+  height:29px!important;
+  flex:0 0 29px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  padding:3px 4px!important;
+  background:#0c1117!important;
+  border-top:1px solid #26313c!important;
+}
+.missionCheckLabel{
+  display:flex!important;
+  align-items:center!important;
+  gap:3px!important;
+  color:#fff!important;
+  font-size:9px!important;
+  font-weight:900!important;
+}
+.missionCheckLabel .taskCheck{
+  width:17px!important;
+  height:17px!important;
+  min-width:17px!important;
+  margin:0!important;
+}
+.missionDelete{
+  width:23px!important;
+  height:23px!important;
+  min-height:0!important;
+  padding:0!important;
+  border:1px solid #a95a5d!important;
+  border-radius:2px!important;
+  background:#432126!important;
+  color:#fff!important;
+  font-size:14px!important;
+  line-height:1!important;
+  box-shadow:none!important;
+}
+.goalTask.missionCard.done{
+  opacity:.6!important;
+  filter:saturate(.45)!important;
+}
+.goalTask.missionCard.done .missionName{
+  text-decoration:line-through!important;
+  color:#d5d5d5!important;
+}
+
+/* 響應式欄數，保留參考圖的密集卡牌感 */
+@media(max-width:1200px){
+  .targetGrid{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+  .goalTasks.missionRoster{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+}
+@media(max-width:900px){
+  .targetGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+  .goalTasks.missionRoster{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  .targetGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  .goalTasks.missionRoster{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+  .rosterTop strong{font-size:11px!important}
+  .rosterInfo .targetName,.missionName{font-size:10px!important}
+}
+@media(max-width:360px){
+  .targetGrid,.goalTasks.missionRoster{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+
+/* v5.7：目標卡不再顯示百分比，改顯示累積 EXP */
+.rosterMeta{
+  color:#f0c84b!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.02em!important;
+  font-variant-numeric:tabular-nums!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+
+/* v5.8：修復目標卡資訊被遮住
+   卡片改成有明確區塊的固定高度，不再用過窄的比例硬塞內容。 */
+.targetGrid{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fill,minmax(145px,1fr))!important;
+  gap:12px!important;
+  align-items:stretch!important;
+}
+
+.rosterTargetCard{
+  aspect-ratio:auto!important;
+  min-height:225px!important;
+  height:auto!important;
+  overflow:hidden!important;
+  display:grid!important;
+  grid-template-rows:30px minmax(118px,1fr) 72px!important;
+}
+
+/* 頂部等級列 */
+.rosterTop{
+  height:30px!important;
+  min-height:30px!important;
+  position:relative!important;
+  z-index:5!important;
+}
+.rosterTop strong{
+  font-size:13px!important;
+}
+
+/* 中央圖示區縮小，避免吃掉資訊區 */
+.rosterArt{
+  min-height:118px!important;
+  height:auto!important;
+  overflow:hidden!important;
+}
+.rosterFactionMark{
+  width:54%!important;
+  max-width:74px!important;
+  font-size:30px!important;
+}
+
+/* 下方資料區固定保留，不可被中央圖示蓋住 */
+.rosterInfo{
+  position:relative!important;
+  z-index:6!important;
+  min-height:72px!important;
+  height:72px!important;
+  padding:7px 8px 6px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:flex-start!important;
+  overflow:hidden!important;
+  background:#070a0e!important;
+  border-top:1px solid #7b8792!important;
+}
+
+.rosterInfo .targetName{
+  display:block!important;
+  min-height:30px!important;
+  max-height:30px!important;
+  white-space:normal!important;
+  overflow:hidden!important;
+  text-overflow:clip!important;
+  line-height:15px!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  color:#ffffff!important;
+}
+
+.rosterMeta{
+  display:block!important;
+  margin-top:4px!important;
+  min-height:13px!important;
+  color:#f2cb4f!important;
+  font-size:10px!important;
+  line-height:13px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+.rosterInfo .targetBar{
+  display:block!important;
+  flex:0 0 auto!important;
+  width:100%!important;
+  height:5px!important;
+  margin-top:6px!important;
+}
+
+/* 新增目標卡也維持同樣尺寸 */
+.targetAdd.rosterTargetCard{
+  display:flex!important;
+  min-height:225px!important;
+}
+
+/* 手機：改成兩欄，優先讓名稱和 EXP 看清楚 */
+@media(max-width:620px){
+  .targetGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  .rosterTargetCard{
+    min-height:220px!important;
+    grid-template-rows:30px minmax(112px,1fr) 74px!important;
+  }
+  .rosterInfo{
+    min-height:74px!important;
+    height:74px!important;
+  }
+  .rosterInfo .targetName{
+    font-size:11px!important;
+  }
+}
+
+/* 很窄的手機仍維持兩欄，但縮小中央圖示，不犧牲文字 */
+@media(max-width:360px){
+  .targetGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .rosterFactionMark{
+    width:48%!important;
+    font-size:25px!important;
+  }
+}
+
+
+/* v5.9：目標卡中央不再放陣營圖示，直接顯示目標名稱 */
+.rosterFactionMark{display:none!important;}
+
+.rosterTargetNameMark{
+  position:relative!important;
+  z-index:3!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:78%!important;
+  min-height:64px!important;
+  padding:10px 8px!important;
+  box-sizing:border-box!important;
+  border:2px solid rgba(228,236,245,.78)!important;
+  border-radius:3px!important;
+  background:rgba(8,13,18,.48)!important;
+  color:#ffffff!important;
+  font-size:clamp(13px,1.8vw,18px)!important;
+  line-height:1.3!important;
+  font-weight:900!important;
+  text-align:center!important;
+  letter-spacing:.03em!important;
+  text-shadow:0 2px 3px #000!important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255,255,255,.06),
+    0 3px 10px rgba(0,0,0,.28)!important;
+  overflow-wrap:anywhere!important;
+}
+
+/* 名稱已經在中央顯示，底部只保留累積經驗值與進度條 */
+.rosterInfo{
+  justify-content:center!important;
+  min-height:56px!important;
+  height:56px!important;
+}
+.rosterInfo .targetName{
+  display:none!important;
+}
+.rosterMeta{
+  margin-top:0!important;
+  font-size:10px!important;
+  text-align:center!important;
+}
+
+.rosterTargetCard{
+  grid-template-rows:30px minmax(128px,1fr) 56px!important;
+}
+
+@media(max-width:620px){
+  .rosterTargetCard{
+    grid-template-rows:30px minmax(122px,1fr) 58px!important;
+  }
+  .rosterInfo{
+    min-height:58px!important;
+    height:58px!important;
+  }
+  .rosterTargetNameMark{
+    width:82%!important;
+    min-height:60px!important;
+    font-size:13px!important;
+    padding:8px 6px!important;
+  }
+}
+
+
+/* v6.0：目標列表與目標任務完全拆頁 */
+
+/* 陣營頁只負責放目標卡，不再在下方展開目標內容 */
+#factionPage #goalDetail{
+  display:none!important;
+}
+
+/* 新的目標任務獨立頁 */
+#goalTaskPage{
+  background:#f3e3c7!important;
+}
+.goalTaskPageWrap{
+  width:min(100%,760px);
+  margin:0 auto;
+}
+.goalTaskPageHeader{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  margin-bottom:14px;
+  padding-bottom:12px;
+  border-bottom:2px solid #6c513f;
+}
+.goalTaskPageHeader .backBtn{
+  min-width:74px;
+}
+.goalTaskPageHeader .goalTaskBreadcrumb{
+  min-width:0;
+}
+.goalTaskPageHeader .goalTaskBreadcrumb small{
+  display:block;
+  color:#5a4435!important;
+  font-weight:800;
+}
+.goalTaskPageHeader .goalTaskBreadcrumb h2{
+  margin:3px 0 0;
+  color:#25180f!important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* 搬到任務頁後，原 goalDetail 本身不再需要外層卡框 */
+#goalTaskPage .goalDetail{
+  display:block!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+}
+
+/* 任務頁的養成資料、餵經驗、突破考驗仍保留 */
+#goalTaskPage .goalDetailTop,
+#goalTaskPage .drop{
+  background:#f7e1bd!important;
+  border:2px solid #6f513d!important;
+  color:#25180f!important;
+  padding:12px!important;
+  margin-bottom:12px!important;
+}
+#goalTaskPage .goalDetailTop *,
+#goalTaskPage .drop *{
+  color:#25180f;
+}
+#goalTaskPage .goalDetailTop .bar{
+  background:#5a4638!important;
+}
+#goalTaskPage .goalDetailTop .fill{
+  background:#c59022!important;
+}
+
+/* 任務矩陣維持深色卡牌，文字高對比 */
+#goalTaskPage .goalTasks.missionRoster{
+  margin-bottom:14px!important;
+}
+#goalTaskPage .missionCard,
+#goalTaskPage .missionCard *{
+  color:#fff!important;
+}
+#goalTaskPage .missionArt small{
+  color:#e4ba3d!important;
+}
+
+/* 新增任務區單獨做成工具列 */
+#goalTaskPage .addTask{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto auto auto!important;
+  gap:8px!important;
+  padding:12px!important;
+  background:#f7e1bd!important;
+  border:2px solid #6f513d!important;
+}
+#goalTaskPage .addTask input,
+#goalTaskPage .addTask select{
+  min-height:42px!important;
+}
+
+@media(max-width:620px){
+  #goalTaskPage .addTask{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+/* v6.2：目標／任務卡只顯示名稱 */
+
+/* 目標卡：移除圖示、階級、等級、EXP、進度條 */
+.targetGrid{
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;
+  gap:10px!important;
+}
+.nameOnlyGoalCard{
+  min-height:96px!important;
+  height:96px!important;
+  aspect-ratio:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:12px!important;
+  border:2px solid #7d8b99!important;
+  border-radius:5px!important;
+  background:linear-gradient(160deg,#3a4651,#151c23)!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.34)!important;
+}
+.nameOnlyGoalText{
+  color:#ffffff!important;
+  font-size:15px!important;
+  line-height:1.35!important;
+  font-weight:900!important;
+  text-align:center!important;
+  overflow-wrap:anywhere!important;
+  text-shadow:0 2px 3px #000!important;
+}
+.nameOnlyGoalCard:hover{
+  border-color:#d9ae2e!important;
+  transform:translateY(-2px)!important;
+}
+
+/* 新增目標卡維持簡潔 */
+.targetAdd.rosterTargetCard{
+  min-height:96px!important;
+  height:96px!important;
+  aspect-ratio:auto!important;
+}
+
+/* 任務卡：不顯示圖示、難度、一次性/循環標籤，只留名稱與必要操作 */
+.goalTasks.missionRoster{
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;
+  gap:10px!important;
+}
+.nameOnlyTaskCard{
+  min-height:112px!important;
+  height:112px!important;
+  aspect-ratio:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  padding:0!important;
+  border:2px solid #7c8794!important;
+  border-radius:5px!important;
+  background:linear-gradient(160deg,#36424e,#111820)!important;
+  overflow:hidden!important;
+}
+.nameOnlyTaskCard .missionName{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:12px 10px!important;
+  background:transparent!important;
+  color:#ffffff!important;
+  font-size:14px!important;
+  line-height:1.35!important;
+  font-weight:900!important;
+  text-align:center!important;
+  overflow-wrap:anywhere!important;
+  text-shadow:0 2px 3px #000!important;
+  -webkit-line-clamp:unset!important;
+}
+.nameOnlyTaskCard .missionCardBottom{
+  flex:0 0 32px!important;
+  height:32px!important;
+  padding:4px 6px!important;
+  background:#090d12!important;
+}
+.nameOnlyTaskCard.done .missionName{
+  color:#d0d0d0!important;
+  text-decoration:line-through!important;
+}
+
+/* 舊圖示／資訊樣式即使殘留也不顯示 */
+.rosterTop,.rosterArt,.rosterInfo,
+.missionCardTop,.missionArt,
+.missionRank,.missionType,.missionGlyph{
+  display:none!important;
+}
+
+@media(max-width:620px){
+  .targetGrid,
+  .goalTasks.missionRoster{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .nameOnlyGoalCard{
+    min-height:88px!important;
+    height:88px!important;
+  }
+  .nameOnlyGoalText,
+  .nameOnlyTaskCard .missionName{
+    font-size:13px!important;
+  }
+}
+
+
+/* v6.3：只移除圖示/難度，不改原本卡片尺寸與排列 */
+
+/* 目標卡恢復 v6.1 原本尺寸 */
+.targetGrid{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fill,minmax(145px,1fr))!important;
+  gap:12px!important;
+  align-items:stretch!important;
+}
+.nameOnlyGoalCard{
+  min-height:225px!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:14px!important;
+  border:2px solid #7d8b99!important;
+  border-radius:4px!important;
+  background:
+    linear-gradient(135deg,transparent 48%,rgba(255,255,255,.04) 49% 51%,transparent 52%),
+    linear-gradient(145deg,#384655,#1b2530 55%,#111820)!important;
+  box-shadow:0 5px 12px rgba(0,0,0,.32)!important;
+}
+.nameOnlyGoalText{
+  color:#ffffff!important;
+  font-size:16px!important;
+  line-height:1.35!important;
+  font-weight:900!important;
+  text-align:center!important;
+  overflow-wrap:anywhere!important;
+  text-shadow:0 2px 3px #000!important;
+}
+
+/* 新增目標卡同樣恢復原高度 */
+.targetAdd.rosterTargetCard{
+  min-height:225px!important;
+  height:auto!important;
+  aspect-ratio:auto!important;
+}
+
+/* 任務卡恢復原本卡牌比例與多欄排列 */
+.goalTasks.missionRoster{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:10px!important;
+  margin-top:10px!important;
+}
+.nameOnlyTaskCard{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:space-between!important;
+  min-width:0!important;
+  min-height:0!important;
+  height:auto!important;
+  aspect-ratio:.72!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:2px solid #7c8794!important;
+  border-radius:4px!important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.05),transparent 35%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 2px,transparent 2px 6px),
+    linear-gradient(160deg,#405061,#1a222b)!important;
+  box-shadow:0 4px 10px rgba(0,0,0,.3)!important;
+}
+
+/* 任務中央只放名稱，不顯示任何圖示或難度 */
+.nameOnlyTaskCard .missionName{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:12px 9px!important;
+  background:transparent!important;
+  color:#ffffff!important;
+  font-size:12px!important;
+  line-height:1.35!important;
+  font-weight:900!important;
+  text-align:center!important;
+  overflow-wrap:anywhere!important;
+  text-shadow:0 2px 3px #000!important;
+  -webkit-line-clamp:unset!important;
+}
+.nameOnlyTaskCard .missionCardBottom{
+  height:29px!important;
+  flex:0 0 29px!important;
+  padding:3px 4px!important;
+  background:#0c1117!important;
+  border-top:1px solid #26313c!important;
+}
+.nameOnlyTaskCard.done .missionName{
+  text-decoration:line-through!important;
+  color:#d5d5d5!important;
+}
+
+/* 明確隱藏圖示與難度資訊，但不碰卡片外框/尺寸 */
+.rosterTop,.rosterArt,.rosterInfo,
+.missionCardTop,.missionArt,
+.missionRank,.missionType,.missionGlyph{
+  display:none!important;
+}
+
+/* 恢復原先響應式欄數 */
+@media(max-width:1200px){
+  .goalTasks.missionRoster{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+}
+@media(max-width:900px){
+  .goalTasks.missionRoster{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+  .targetGrid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  .nameOnlyGoalCard,
+  .targetAdd.rosterTargetCard{
+    min-height:220px!important;
+  }
+  .goalTasks.missionRoster{
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .nameOnlyGoalText{font-size:14px!important}
+  .nameOnlyTaskCard .missionName{font-size:11px!important}
+}
+@media(max-width:360px){
+  .goalTasks.missionRoster{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+
+/* v6.4：圖示不要，但 E階、等級、累積EXP、進度條全部保留 */
+.nameOnlyGoalCard{
+  min-height:225px!important;
+  height:auto!important;
+  padding:0!important;
+  display:grid!important;
+  grid-template-rows:30px minmax(118px,1fr) 58px!important;
+  align-items:stretch!important;
+  justify-content:stretch!important;
+}
+
+/* v6.3 曾把資訊區隱藏，這裡只對目標卡恢復 */
+.nameOnlyGoalCard .rosterTop{
+  display:flex!important;
+  height:30px!important;
+  min-height:30px!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  padding:0 7px!important;
+  box-sizing:border-box!important;
+  background:linear-gradient(90deg,#253445,#171d26)!important;
+  border-bottom:1px solid #8994a0!important;
+}
+.nameOnlyGoalCard .rosterTop .targetBadge{
+  position:static!important;
+  display:inline-grid!important;
+  place-items:center!important;
+  min-width:29px!important;
+  height:21px!important;
+  padding:0 5px!important;
+  border:0!important;
+  border-radius:2px!important;
+  background:#426b91!important;
+  color:#fff!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  box-shadow:none!important;
+}
+.nameOnlyGoalCard .rosterTop strong{
+  display:block!important;
+  color:#fff!important;
+  font-size:13px!important;
+  font-weight:900!important;
+  text-shadow:0 1px 2px #000!important;
+}
+
+.goalNamePanel{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:118px!important;
+  padding:12px!important;
+  box-sizing:border-box!important;
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.05),transparent 35%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 2px,transparent 2px 7px),
+    linear-gradient(145deg,#384655,#1b2530 55%,#111820)!important;
+}
+.goalNamePanel .nameOnlyGoalText{
+  color:#fff!important;
+  font-size:16px!important;
+  line-height:1.35!important;
+  font-weight:900!important;
+  text-align:center!important;
+  overflow-wrap:anywhere!important;
+  text-shadow:0 2px 3px #000!important;
+}
+
+.nameOnlyGoalCard .rosterInfo{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  min-height:58px!important;
+  height:58px!important;
+  padding:7px 8px!important;
+  box-sizing:border-box!important;
+  background:#070a0e!important;
+  border-top:1px solid #7b8792!important;
+}
+.nameOnlyGoalCard .rosterMeta{
+  display:block!important;
+  margin:0!important;
+  color:#f2cb4f!important;
+  font-size:10px!important;
+  line-height:13px!important;
+  font-weight:900!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.nameOnlyGoalCard .targetBar{
+  display:block!important;
+  width:100%!important;
+  height:5px!important;
+  margin-top:6px!important;
+  background:#28323d!important;
+  overflow:hidden!important;
+}
+.nameOnlyGoalCard .targetBar>i{
+  display:block!important;
+  height:100%!important;
+  background:#d5ad32!important;
+}
+
+/* 沒有任何中央圖示 */
+.nameOnlyGoalCard .rosterArt,
+.nameOnlyGoalCard .rosterFactionMark{
+  display:none!important;
+}
+
+@media(max-width:620px){
+  .nameOnlyGoalCard{
+    min-height:220px!important;
+    grid-template-rows:30px minmax(112px,1fr) 58px!important;
+  }
+  .goalNamePanel .nameOnlyGoalText{
+    font-size:14px!important;
+  }
+}
+
+
+/* v6.5：目標卡底部改成精英星級顯示 */
+.nameOnlyGoalCard .rosterInfo{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height:58px!important;
+  height:58px!important;
+  padding:6px 8px!important;
+  box-sizing:border-box!important;
+  background:#070a0e!important;
+  border-top:1px solid #7b8792!important;
+}
+
+.nameOnlyGoalCard .rosterMeta,
+.nameOnlyGoalCard .targetBar{
+  display:none!important;
+}
+
+.eliteStars{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:4px!important;
+  width:100%!important;
+}
+
+.eliteStar{
+  font-size:18px!important;
+  line-height:1!important;
+  text-shadow:0 1px 2px #000, 0 0 6px rgba(0,0,0,.45)!important;
+}
+
+.eliteStar.on{
+  color:#f4c23e!important;
+}
+
+.eliteStar.off{
+  color:#60656b!important;
+  opacity:.55!important;
+}
+
+@media(max-width:620px){
+  .eliteStar{
+    font-size:16px!important;
+  }
+}
+
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -1790,7 +2842,40 @@ const EXP = [
 [120,172,224,276,328,380,432,484,536,588,640,692,744,796,848,900,952,1004,1056,1108,1160,1212,1264,1316,1368,1420,1472,1524,1576,1628,1706,1784,1862,1940,2018,2096,2174,2252,2330,2408,2584,2760,2936,3112,3288,3464,3640,3816,3992,4168,4344,4520,4696,4890,5326,6019,6312,6505,6838,7391,7657,7823,8089,8355,8621,8887,9153,9419,9605,9951,10448,10945,11442,11939,12436,12933,13430,13927,14549],
 [191,303,415,527,639,751,863,975,1087,1199,1311,1423,1535,1647,1759,1871,1983,2095,2207,2319,2431,2543,2655,2767,2879,2991,3103,3215,3327,3439,3602,3765,3928,4091,4254,4417,4580,4743,4906,5069,5232,5395,5558,5721,5884,6047,6210,6373,6536,6699,6902,7105,7308,7511,7714,7917,8120,8323,8526,8729,9163,9597,10031,10465,10899,11333,11767,12201,12729,13069,13747,14425,15103,15781,16459,17137,17815,18493,19171,19849,21105,22361,23617,24873,26129,27385,28641,29897,31143]
 ];
+
 const maxLv=[50,80,90];
+
+/* v5.7：計算目標從 E0 Lv1 起一路累積至目前狀態的總 EXP */
+function eliteStarMarkup(elite){
+  const lit = Math.max(1, Math.min(3, Number(elite || 0) + 1));
+  return `<div class="eliteStars" aria-label="精英星級">${[0,1,2].map(i =>
+    `<span class="eliteStar ${i < lit ? "on" : "off"}">★</span>`
+  ).join("")}</div>`;
+}
+
+function cumulativeGoalExp(g){
+  if(!g)return 0;
+  const elite=Math.max(0,Math.min(2,Number(g.elite)||0));
+  const level=Math.max(1,Number(g.level)||1);
+  let total=0;
+
+  // 已完成的精英階段全部算入
+  for(let e=0;e<elite;e++){
+    total += (EXP[e]||[]).reduce((sum,v)=>sum+(Number(v)||0),0);
+  }
+
+  // 目前精英階段：加上已跨過的等級
+  const current=EXP[elite]||[];
+  const completedLevels=Math.min(Math.max(0,level-1),current.length);
+  for(let i=0;i<completedLevels;i++){
+    total += Number(current[i])||0;
+  }
+
+  // 再加上目前這一級已投入、尚未升級的 EXP
+  total += Math.max(0,Number(g.exp)||0);
+  return total;
+}
+
 const books=[
  {name:"基礎作戰記錄",exp:200,p:.50},
  {name:"初級作戰記錄",exp:400,p:.30},
@@ -2234,15 +3319,20 @@ function renderFactionPage(fi){
       let ts=g.tasks||[], done=ts.filter(t=>t.done).length;
       let mx=maxLv[g.elite], maxed=g.level>=mx, n=maxed?0:EXP[g.elite][g.level-1];
       let pct=maxed?100:Math.min(100,(g.exp||0)/n*100);
-      return `<div class="targetCard" onclick="openGoal(${fi},${gi})">
-        <span class="targetBadge">E${g.elite}</span>
-        <div class="targetArt">🎯</div>
-        <div class="targetInfo"><div class="targetName">${esc(g.title)}</div>
-        <div class="targetProgress"><b>Lv.${g.level}</b>　${maxed?(g.elite<2?"可精英化":"MAX"):`${(g.exp||0).toLocaleString()} / ${n.toLocaleString()} EXP`}</div>
-        <div class="targetBar"><i style="width:${pct}%"></i></div></div>
-      </div>`;
+      return `<button class="targetCard rosterTargetCard nameOnlyGoalCard" onclick="openGoal(${fi},${gi})">
+        <div class="rosterTop">
+          <span class="targetBadge">E${g.elite}</span>
+          <strong>Lv.${g.level}</strong>
+        </div>
+        <div class="goalNamePanel">
+          <div class="nameOnlyGoalText">${esc(g.title)}</div>
+        </div>
+        <div class="targetInfo rosterInfo">
+          ${eliteStarMarkup(g.elite)}
+        </div>
+      </button>`;
    }).join("")}
-   <div class="targetCard targetAdd" onclick="showGoalCreator(${fi})"><div><b>＋</b>新增目標</div></div>
+   <button class="targetCard targetAdd rosterTargetCard" onclick="showGoalCreator(${fi})"><div class="rosterAdd"><b>＋</b><span>新增目標</span></div></button>
    </div>
    <div id="goalCreator" class="goalDetail">
       <div class="goalDetailTop"><b>建立新目標</b><button class="mini" onclick="hideGoalCreator()">×</button></div>
@@ -2281,12 +3371,22 @@ function openGoal(fi,gi){
  <div class="drop"><b>餵給這個目標作戰記錄</b><div class="footerBtns">
  ${books.map((b,i)=>`<button ${s.inv[i]<=0||maxed?"disabled":""} onclick="useBookOnGoal(${fi},${gi},${i})">${b.name}<br><small>${b.exp} EXP｜×${s.inv[i]}</small></button>`).join("")}</div></div>
  <h3 style="margin-top:16px">任務</h3>
- <div class="goalTasks">${(g.tasks||[]).map((t,ti)=>`<div class="goalTask ${t.done?'done':''}">
- <span>${esc(t.title)} <small>(${['','簡單','普通','困難','','大型'][t.difficulty]||('×'+t.difficulty)}｜${t.type==="repeat"?"循環":"一次性"})</small></span>
- <input class="taskCheck" type="checkbox" ${t.done?"checked disabled":""}
- onchange="if(this.checked){finishGoalTask(${fi},${gi},${ti});setTimeout(()=>openGoal(${fi},${gi}),0)}"
- aria-label="勾選完成任務">
- <button class="mini danger" onclick="deleteGoalTask(${fi},${gi},${ti});setTimeout(()=>openGoal(${fi},${gi}),0)">×</button></div>`).join("")}</div>
+ <div class="goalTasks missionRoster">${(g.tasks||[]).map((t,ti)=>{
+ const diffName=['','簡單','普通','困難','','大型'][t.difficulty]||('×'+t.difficulty);
+ const rank=t.difficulty>=5?'V':t.difficulty>=3?'III':t.difficulty>=2?'II':'I';
+ return `<div class="goalTask missionCard nameOnlyTaskCard ${t.done?'done':''}">
+   <div class="missionName">${esc(t.title)}</div>
+   <div class="missionCardBottom">
+     <label class="missionCheckLabel">
+       <input class="taskCheck" type="checkbox" ${t.done?"checked disabled":""}
+       onchange="if(this.checked){finishGoalTask(${fi},${gi},${ti});setTimeout(()=>openGoal(${fi},${gi}),0)}"
+       aria-label="勾選完成任務">
+       <span>${t.done?"已完成":"完成"}</span>
+     </label>
+     <button class="missionDelete" onclick="deleteGoalTask(${fi},${gi},${ti});setTimeout(()=>openGoal(${fi},${gi}),0)" aria-label="刪除任務">×</button>
+   </div>
+ </div>`;
+}).join("")}</div>
  <div class="addTask"><input id="task-${fi}-${gi}" placeholder="新增任務"><select id="diff-${fi}-${gi}">
  <option value="1">簡單 ×1</option><option value="2" selected>普通 ×2</option><option value="3">困難 ×3</option><option value="5">大型 ×5</option>
  </select><select id="type-${fi}-${gi}">
@@ -3301,6 +4401,165 @@ setTimeout(()=>{
   v53Dock();
   dockGoHome();
 },420);
+
+
+/* v6.0：點目標後跳到真正獨立的「目標任務頁」 */
+function ensureGoalTaskPage(){
+  let page=document.getElementById("goalTaskPage");
+  if(page)return page;
+
+  page=document.createElement("section");
+  page.id="goalTaskPage";
+  page.className="page";
+  page.innerHTML=`
+    <div class="goalTaskPageWrap">
+      <div class="goalTaskPageHeader">
+        <button class="backBtn" id="goalTaskBackBtn">← 目標</button>
+        <div class="goalTaskBreadcrumb">
+          <small id="goalTaskFactionName">陣營</small>
+          <h2 id="goalTaskPageTitle">目標任務</h2>
+        </div>
+      </div>
+      <div id="goalTaskPageBody"></div>
+    </div>`;
+  document.querySelector("main").appendChild(page);
+  return page;
+}
+
+/*
+  先讓既有 openGoal 產生完整目標內容，
+  再把它搬到新的獨立頁。
+  如此原本的任務完成、作戰記錄、突破考驗、改名、刪除等功能全部沿用。
+*/
+const v60PreviousOpenGoal = openGoal;
+openGoal = function(fi,gi){
+  const f=s.factions?.[fi];
+  const g=f?.goals?.[gi];
+  if(!f||!g)return;
+
+  // 確保陣營列表 DOM 存在，供舊邏輯暫時渲染。
+  renderFactionPage(fi);
+
+  // 使用既有邏輯產生完整內容。
+  v60PreviousOpenGoal(fi,gi);
+
+  const oldBox=document.getElementById("goalDetail");
+  const page=ensureGoalTaskPage();
+  const body=document.getElementById("goalTaskPageBody");
+
+  if(oldBox && body){
+    body.innerHTML=`<div class="goalDetail">${oldBox.innerHTML}</div>`;
+  }
+
+  document.getElementById("goalTaskFactionName").textContent=factionDefs[fi]?.name||f.name||"陣營";
+  document.getElementById("goalTaskPageTitle").textContent=g.title||"目標任務";
+
+  const back=document.getElementById("goalTaskBackBtn");
+  if(back)back.onclick=()=>openFaction(fi);
+
+  // 真正切頁：舊的陣營目標頁完全隱藏。
+  if(typeof v53ShowScreen==="function"){
+    v53ShowScreen(page,"block");
+  }else{
+    document.querySelectorAll("main>.page").forEach(x=>x.style.display="none");
+    page.style.display="block";
+  }
+
+  if(typeof v53SetDockActive==="function")v53SetDockActive("goals");
+  if(typeof ensureDockMounted==="function")ensureDockMounted();
+
+  document.documentElement.style.overflow="hidden";
+  document.body.style.overflow="hidden";
+  page.scrollTop=0;
+  window.scrollTo(0,0);
+};
+
+/* 進入陣營時只顯示目標列表，不殘留任何已開啟的目標詳情 */
+const v60PreviousOpenFaction = openFaction;
+openFaction=function(fi){
+  const result=v60PreviousOpenFaction(fi);
+  const detail=document.getElementById("goalDetail");
+  if(detail){
+    detail.innerHTML="";
+    detail.style.display="none";
+  }
+  const creator=document.getElementById("goalCreator");
+  if(creator)creator.style.display="none";
+  return result;
+};
+
+/* 新增目標後仍停留在純目標列表頁 */
+const v60PreviousAddGoal = addGoal;
+addGoal=function(fi){
+  v60PreviousAddGoal(fi);
+  setTimeout(()=>openFaction(fi),0);
+};
+
+/* 改名後留在目前目標任務頁 */
+const v60PreviousRenameGoal = renameGoal;
+renameGoal=function(fi,gi){
+  v60PreviousRenameGoal(fi,gi);
+  if(s.factions?.[fi]?.goals?.[gi]){
+    setTimeout(()=>openGoal(fi,gi),0);
+  }
+};
+
+
+/* v6.1 修復：獨立目標頁存在重複 ID 時，新增任務必須從目前顯示的目標頁讀取欄位 */
+addGoalTask = function(fi,gi){
+  const page=document.getElementById("goalTaskPage");
+  const scope=page && page.classList.contains("appScreen") ? page : document;
+
+  const titleEl=scope.querySelector(`#task-${fi}-${gi}`);
+  const diffEl=scope.querySelector(`#diff-${fi}-${gi}`);
+  const typeEl=scope.querySelector(`#type-${fi}-${gi}`);
+
+  const title=(titleEl?.value||"").trim();
+  if(!title){
+    alert("請輸入任務名稱。");
+    titleEl?.focus();
+    return;
+  }
+
+  const g=s.factions?.[fi]?.goals?.[gi];
+  if(!g)return;
+  if(!Array.isArray(g.tasks))g.tasks=[];
+
+  const difficulty=Number(diffEl?.value||2);
+  const type=typeEl?.value||"once";
+  const today=localDayKey();
+
+  g.tasks.push({
+    id:Date.now(),
+    title,
+    difficulty,
+    type,
+    done:false,
+    createdDay:today,
+    lastDailyCheck:today
+  });
+
+  save();
+  addLog(`＋ [${factionDefs[fi].name}]「${g.title}」新增任務「${title}」`);
+
+  /* 直接重新渲染目前這個獨立目標頁，新增後立刻看得到 */
+  openGoal(fi,gi);
+};
+
+/* 同樣確保刪除與完成後都留在獨立目標頁並立即刷新 */
+deleteGoalTask = function(fi,gi,ti){
+  const g=s.factions?.[fi]?.goals?.[gi];
+  if(!g || !Array.isArray(g.tasks) || !g.tasks[ti])return;
+  g.tasks.splice(ti,1);
+  save();
+  openGoal(fi,gi);
+};
+
+const v61FinishGoalTaskBase = finishGoalTask;
+finishGoalTask = function(fi,gi,ti){
+  v61FinishGoalTaskBase(fi,gi,ti);
+  setTimeout(()=>openGoal(fi,gi),0);
+};
 
 </script>
 </body></html>
