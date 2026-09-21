@@ -322,6 +322,973 @@ html,body{
 .goalDirectoryCard small{display:block;margin-top:4px;opacity:.78}
 @media(min-width:800px){.goalDirectory{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
+
+/* v3.7 遊戲廠商式首頁預覽 */
+.gameHome{max-width:1180px;margin:auto;padding:18px 18px 92px!important;color:#493426}
+.gameEventBanner{background:#70462f;color:#fff0d2;border:3px solid #3f2b20;padding:12px 16px;
+ display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:4px 4px 0 #3f2b20;margin-bottom:14px}
+.gameEventBanner b{display:block;font-size:17px}.gameEventBanner strong{font-size:20px;font-variant-numeric:tabular-nums}
+.eyebrow{font-size:10px;font-weight:900;letter-spacing:.18em;opacity:.7;display:block;margin-bottom:4px}
+.gameHero{display:flex;justify-content:space-between;align-items:center;gap:15px;background:#fff0d2;
+ border:4px solid #69452f;padding:20px;box-shadow:inset 0 0 0 3px #f7d7a4,5px 5px 0 #6b493255}
+.gameHero h2{margin:2px 0 6px;font-size:clamp(22px,4vw,34px)}.gameHero p{margin:0;opacity:.72}
+.iconSquare{min-width:50px;height:50px;font-size:22px}
+.gameQuick{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:14px 0 20px}
+.gameQuick button{min-height:60px;display:flex;gap:8px;align-items:center;justify-content:center;font-weight:900}
+.sectionHead{display:flex;justify-content:space-between;align-items:end;margin:8px 2px}
+.sectionHead b{font-size:19px}.sectionHead small{font-weight:900;letter-spacing:.12em;opacity:.55}
+.gameFactionGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.gameFactionCard{position:relative;text-align:left;min-height:116px;padding:15px;background:#f8d9a5;border:3px solid #704b32;
+ box-shadow:3px 4px 0 #5b3b28;overflow:hidden;cursor:pointer}
+.gameFactionCard .bigIcon{font-size:30px;display:block;margin-bottom:10px}.gameFactionCard b{font-size:16px;display:block}
+.gameFactionCard small{display:block;margin-top:4px;opacity:.7}
+.miniBar{height:7px;background:#d3a875;border:1px solid #704b32;margin-top:10px}.miniBar i{display:block;height:100%;background:#78a96b}
+.gameDock{position:sticky;bottom:10px;margin:18px auto 0;max-width:520px;background:#5d3f2e;border:3px solid #3f2b20;
+ padding:6px;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;box-shadow:4px 5px 0 #3f2b2055;z-index:15}
+.gameDock button{background:transparent;color:#f7ddb3;border:0;box-shadow:none;min-height:50px;font-size:18px}
+.gameDock button span{display:block;font-size:11px;margin-top:2px}.gameDock button.active{background:#f1c887;color:#493426}
+.gameMenuSheet{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);width:min(520px,calc(100% - 24px));
+ background:#fff0d2;border:4px solid #69452f;padding:14px;z-index:30;box-shadow:0 0 0 9999px #35251c88,5px 5px 0 #3f2b20}
+.sheetTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:18px}
+.sheetTop button{width:44px;height:44px}.menuGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.menuGrid button{min-height:68px;font-size:20px}.menuGrid span{display:block;font-size:13px;margin-top:4px}
+@media(min-width:760px){.gameFactionGrid{grid-template-columns:repeat(4,minmax(0,1fr))}.gameFactionCard{min-height:138px}}
+
+
+/* v3.8 七陣營卡牌式手機首頁 */
+.mobileRosterHome{max-width:1080px;margin:auto;padding:10px 10px 88px!important}
+.mobileTop{display:flex;align-items:center;justify-content:space-between;padding:8px 4px 12px;border-bottom:1px solid #8e6848}
+.profileMini{display:flex;align-items:center;gap:9px}.profileMini b{display:block;font-size:17px}.profileMini small{font-size:9px;letter-spacing:.15em;opacity:.6}
+.profileOrb{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#6d4a35;color:#ffe0a6;border:2px solid #d6a665;box-shadow:inset 0 0 0 2px #38271f}
+.menuTopBtn{width:44px;height:44px;padding:0;font-size:21px}
+.mobileMotto{text-align:center;padding:20px 8px 17px}.mobileMotto span{display:block;font-size:24px;font-weight:900;letter-spacing:.08em}.mobileMotto small{display:block;margin-top:5px;letter-spacing:.2em;opacity:.55}
+.rosterHead{margin-bottom:8px}
+.rosterGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+.rosterGrid .gameFactionCard{min-height:238px!important;padding:0!important;background:#241d19!important;border:3px solid #8d6747!important;box-shadow:3px 4px 0 #4c3426!important;color:#fff0d2!important;display:flex;flex-direction:column;text-align:left}
+.rosterGrid .cardVisual{height:130px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:2px solid #8d6747;
+ background:radial-gradient(circle at 50% 35%,#f2d19a 0,#b98458 28%,#5d4130 58%,#2d2420 100%)}
+.rosterGrid .cardVisual:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(24,17,14,.75))}
+.rosterGrid .bigIcon{font-size:58px!important;margin:0!important;z-index:1;filter:drop-shadow(0 4px 0 #35251c)}
+.rosterGrid .cardBody{padding:10px 10px 9px;flex:1;display:flex;flex-direction:column}
+.rosterGrid .cardBody b{font-size:15px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rosterGrid .cardBody small{font-size:11px!important;color:#e9cfaa;margin-top:4px!important}
+.rosterGrid .miniBar{margin-top:auto!important;height:7px!important;background:#15110f!important;border:1px solid #a57b56!important}
+.rosterGrid .miniBar i{background:#d7ad6f!important}
+.rosterGrid .pct{font-size:10px;margin-top:4px;text-align:right;color:#e8cfaa}
+.gameEventBanner{margin:0 0 8px!important}
+@media(min-width:560px){.rosterGrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(min-width:900px){.rosterGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important}.rosterGrid .gameFactionCard{min-height:270px!important}.rosterGrid .cardVisual{height:155px}}
+
+
+/* v3.9 iPhone 主畫面式陳列 */
+.mobileRosterHome{
+  padding:14px 14px 102px!important;
+  min-height:100%;
+}
+.mobileMotto{
+  text-align:left!important;
+  padding:18px 4px 12px!important;
+}
+.mobileMotto span{font-size:22px!important}
+.rosterHead{margin:4px 4px 12px!important}
+
+.rosterGrid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:22px 12px!important;
+  align-items:start!important;
+}
+.rosterGrid .gameFactionCard{
+  min-height:0!important;
+  padding:0!important;
+  border:0!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  color:#493426!important;
+  overflow:visible!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  text-align:center!important;
+}
+.rosterGrid .cardVisual{
+  width:min(17vw,72px)!important;
+  height:min(17vw,72px)!important;
+  min-width:58px!important;
+  min-height:58px!important;
+  border-radius:17px!important;
+  border:2px solid rgba(105,69,47,.9)!important;
+  box-shadow:inset 0 0 0 2px rgba(255,240,210,.48),0 4px 8px rgba(71,45,29,.22)!important;
+  background:linear-gradient(145deg,#f6d89f,#b97c4f)!important;
+}
+.rosterGrid .cardVisual:after{display:none!important}
+.rosterGrid .bigIcon{
+  font-size:32px!important;
+  filter:drop-shadow(0 2px 0 rgba(75,48,31,.25))!important;
+}
+.rosterGrid .cardBody{
+  width:100%!important;
+  padding:7px 0 0!important;
+  display:block!important;
+}
+.rosterGrid .cardBody b{
+  font-size:12px!important;
+  line-height:1.25!important;
+  white-space:normal!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  color:#493426!important;
+  min-height:30px;
+}
+.rosterGrid .cardBody small,
+.rosterGrid .miniBar,
+.rosterGrid .pct{display:none!important}
+
+/* 不同陣營做成不同 app icon 色感 */
+.rosterGrid .gameFactionCard:nth-child(1) .cardVisual{background:linear-gradient(145deg,#df9a8b,#9b5145)!important}
+.rosterGrid .gameFactionCard:nth-child(2) .cardVisual{background:linear-gradient(145deg,#91b7c8,#557b91)!important}
+.rosterGrid .gameFactionCard:nth-child(3) .cardVisual{background:linear-gradient(145deg,#9ec29a,#658761)!important}
+.rosterGrid .gameFactionCard:nth-child(4) .cardVisual{background:linear-gradient(145deg,#e4c27c,#a77b3d)!important}
+.rosterGrid .gameFactionCard:nth-child(5) .cardVisual{background:linear-gradient(145deg,#b7a0c8,#765f8c)!important}
+.rosterGrid .gameFactionCard:nth-child(6) .cardVisual{background:linear-gradient(145deg,#d9a1a8,#965e69)!important}
+.rosterGrid .gameFactionCard:nth-child(7) .cardVisual{background:linear-gradient(145deg,#91b9b5,#537f7d)!important}
+
+/* iPhone dock 感：底部四大功能 */
+.gameDock{
+  border-radius:22px!important;
+  border:1px solid rgba(255,255,255,.28)!important;
+  background:rgba(88,59,42,.88)!important;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  padding:7px!important;
+  box-shadow:0 8px 22px rgba(54,34,23,.28)!important;
+}
+.gameDock button{border-radius:16px!important}
+.gameDock button.active{background:rgba(255,229,184,.92)!important}
+
+/* 選單也改成 app library 感 */
+.menuGrid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px 8px!important}
+.menuGrid button{
+  min-height:72px!important;
+  padding:8px 4px!important;
+  border-radius:16px!important;
+}
+.menuGrid span{font-size:11px!important}
+
+@media(max-width:370px){
+ .rosterGrid{gap:18px 8px!important}
+ .rosterGrid .cardBody b{font-size:11px!important}
+}
+@media(min-width:760px){
+ .rosterGrid{grid-template-columns:repeat(7,minmax(0,1fr))!important;max-width:760px;margin:auto}
+ .rosterGrid .cardVisual{width:78px!important;height:78px!important}
+}
+
+
+/* v4.0 手機首頁：真正做成 App 主畫面 */
+@media(max-width:759px){
+  body{padding-bottom:0!important}
+  .mobileRosterHome{
+    min-height:100vh!important;
+    box-sizing:border-box!important;
+    padding:22px 18px 108px!important;
+    background:
+      radial-gradient(circle at 50% 15%,rgba(255,225,170,.20),transparent 28%),
+      linear-gradient(180deg,#f1c986 0%,#d99a62 52%,#b8784e 100%)!important;
+  }
+
+  /* 手機首頁不要多餘區塊 */
+  .mobileRosterHome .mobileTop,
+  .mobileRosterHome .sectionHead,
+  .mobileRosterHome .gameEventBanner{display:none!important}
+
+  .mobileMotto{
+    text-align:center!important;
+    padding:28px 4px 34px!important;
+  }
+  .mobileMotto span{
+    font-size:25px!important;
+    letter-spacing:.12em!important;
+    color:#4d3425!important;
+    text-shadow:0 1px 0 #ffe6b9;
+  }
+  .mobileMotto small{
+    font-size:9px!important;
+    letter-spacing:.22em!important;
+    color:#6c4933!important;
+    margin-top:8px!important;
+  }
+
+  .rosterGrid{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:28px 12px!important;
+    align-items:start!important;
+  }
+  .rosterGrid .gameFactionCard{
+    min-width:0!important;
+    background:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+    padding:0!important;
+    color:#493426!important;
+    overflow:visible!important;
+  }
+  .rosterGrid .cardVisual{
+    width:min(18vw,72px)!important;
+    height:min(18vw,72px)!important;
+    min-width:58px!important;min-height:58px!important;
+    margin:auto!important;
+    border-radius:18px!important;
+    border:2px solid rgba(91,58,39,.78)!important;
+    box-shadow:inset 0 0 0 2px rgba(255,242,210,.52),0 5px 10px rgba(72,44,28,.25)!important;
+  }
+  .rosterGrid .bigIcon{font-size:31px!important}
+  .rosterGrid .cardBody{padding:8px 0 0!important;text-align:center!important}
+  .rosterGrid .cardBody b{
+    min-height:0!important;
+    font-size:12px!important;
+    line-height:1.3!important;
+    color:#493426!important;
+    text-shadow:0 1px 0 rgba(255,235,197,.7);
+  }
+  .rosterGrid .cardBody small,.rosterGrid .miniBar,.rosterGrid .pct{display:none!important}
+
+  /* 真正固定在手機底部，不跟頁面滾動 */
+  .gameDock{
+    position:fixed!important;
+    left:12px!important;
+    right:12px!important;
+    bottom:12px!important;
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    z-index:100!important;
+    grid-template-columns:repeat(4,1fr)!important;
+    border-radius:24px!important;
+    background:rgba(75,51,38,.91)!important;
+    border:1px solid rgba(255,235,198,.35)!important;
+    box-shadow:0 8px 24px rgba(55,34,23,.34)!important;
+    backdrop-filter:blur(16px)!important;
+    -webkit-backdrop-filter:blur(16px)!important;
+  }
+  .gameDock button{min-height:58px!important}
+  .gameDock button span{font-size:11px!important}
+
+  /* 獨立頁面會留出 dock 空間 */
+  main>.page:not(#gameHomePreview){padding-bottom:100px!important}
+
+  .gameMenuSheet{
+    position:fixed!important;
+    left:12px!important;right:12px!important;bottom:86px!important;
+    width:auto!important;transform:none!important;
+    max-height:70vh;overflow:auto;
+  }
+}
+
+
+/* v4.1 單一首頁架構：桌機/手機共用同一個 App Launcher 首頁 */
+#home.legacySystemPage{display:none!important}
+
+#gameHomePreview{
+  display:block;
+  width:min(100%,720px);
+  min-height:100vh;
+  margin:0 auto;
+  box-sizing:border-box;
+  padding:24px 20px 112px!important;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(255,238,199,.26),transparent 27%),
+    linear-gradient(180deg,#f3cc8b 0%,#dda269 58%,#bd7d50 100%);
+}
+#gameHomePreview .mobileTop,
+#gameHomePreview .sectionHead,
+#gameHomePreview .gameEventBanner{display:none!important}
+#gameHomePreview .mobileMotto{text-align:center!important;padding:38px 4px 42px!important}
+#gameHomePreview .mobileMotto span{font-size:clamp(24px,6vw,34px)!important;letter-spacing:.11em!important}
+#gameHomePreview .mobileMotto small{margin-top:8px!important;letter-spacing:.22em!important}
+
+#gameHomePreview .rosterGrid{
+ display:grid!important;
+ grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:30px 14px!important;
+ max-width:560px;
+ margin:0 auto;
+}
+#gameHomePreview .gameFactionCard{
+ min-height:0!important;padding:0!important;border:0!important;box-shadow:none!important;
+ background:transparent!important;color:#493426!important;overflow:visible!important;
+ display:flex!important;flex-direction:column!important;align-items:center!important;text-align:center!important;
+}
+#gameHomePreview .cardVisual{
+ width:76px!important;height:76px!important;min-width:0!important;min-height:0!important;
+ border-radius:19px!important;border:2px solid rgba(91,58,39,.82)!important;
+ box-shadow:inset 0 0 0 2px rgba(255,242,210,.5),0 5px 11px rgba(72,44,28,.25)!important;
+}
+#gameHomePreview .cardVisual:after{display:none!important}
+#gameHomePreview .bigIcon{font-size:33px!important}
+#gameHomePreview .cardBody{padding:8px 0 0!important;width:100%!important;display:block!important}
+#gameHomePreview .cardBody b{font-size:12px!important;line-height:1.3!important;color:#493426!important;white-space:normal!important;min-height:31px}
+#gameHomePreview .cardBody small,
+#gameHomePreview .miniBar,
+#gameHomePreview .pct{display:none!important}
+
+/* 固定底部功能列 */
+#gameHomePreview .gameDock{
+ position:fixed!important;
+ left:50%!important;
+ transform:translateX(-50%)!important;
+ bottom:12px!important;
+ width:min(calc(100% - 24px),560px)!important;
+ margin:0!important;
+ z-index:100!important;
+ border-radius:24px!important;
+ background:rgba(76,51,37,.92)!important;
+ border:1px solid rgba(255,235,198,.38)!important;
+ box-shadow:0 8px 24px rgba(55,34,23,.34)!important;
+ backdrop-filter:blur(16px)!important;-webkit-backdrop-filter:blur(16px)!important;
+}
+#gameHomePreview .gameDock button{min-height:58px!important;border-radius:16px!important}
+
+/* 所有獨立功能頁留出底部空間；不與首頁同時顯示 */
+main>.page:not(#gameHomePreview){padding-bottom:100px!important}
+.gameMenuSheet{bottom:86px!important}
+
+@media(max-width:520px){
+ #gameHomePreview{padding-left:14px!important;padding-right:14px!important}
+ #gameHomePreview .rosterGrid{gap:26px 9px!important}
+ #gameHomePreview .cardVisual{width:min(18vw,70px)!important;height:min(18vw,70px)!important}
+ #gameHomePreview .cardBody b{font-size:11px!important}
+}
+
+
+/* v4.2 沉浸式夜景 App Launcher */
+body{background:#090f20!important}
+#gameHomePreview.premiumHome{
+ position:relative;isolation:isolate;overflow:hidden;
+ width:min(100%,720px);min-height:100svh;margin:auto;
+ padding:22px 18px 118px!important;color:#edf4ff!important;
+ background:linear-gradient(180deg,#071229 0%,#0c1d3b 48%,#13253c 72%,#161824 100%)!important;
+}
+.nightBackdrop{position:absolute;inset:0;z-index:-2;pointer-events:none;
+ background:
+ radial-gradient(circle at 78% 12%,rgba(76,125,255,.22),transparent 22%),
+ radial-gradient(circle at 20% 72%,rgba(255,183,88,.10),transparent 25%),
+ linear-gradient(180deg,#071126,#0c2142 62%,#171723)}
+.stars{position:absolute;inset:0;opacity:.65;background-image:
+ radial-gradient(circle,#fff 0 1px,transparent 1.4px),
+ radial-gradient(circle,#8bb6ff 0 1px,transparent 1.5px);
+ background-size:71px 71px,113px 113px;background-position:8px 12px,31px 42px}
+.cityGlow{position:absolute;left:0;right:0;bottom:130px;height:190px;opacity:.7;
+ background:
+ linear-gradient(90deg,transparent 0 8%,#16213b 8% 12%,transparent 12% 18%,#101d38 18% 25%,transparent 25% 31%,#1c2943 31% 38%,transparent 38% 44%,#101c36 44% 53%,transparent 53% 61%,#18253f 61% 70%,transparent 70%),
+ linear-gradient(0deg,rgba(247,177,78,.16),transparent 65%);
+ clip-path:polygon(0 55%,7% 55%,7% 37%,12% 37%,12% 64%,19% 64%,19% 48%,25% 48%,25% 70%,32% 70%,32% 30%,38% 30%,38% 61%,45% 61%,45% 42%,53% 42%,53% 69%,61% 69%,61% 21%,68% 21%,68% 57%,76% 57%,76% 38%,84% 38%,84% 64%,92% 64%,92% 49%,100% 49%,100% 100%,0 100%)}
+
+.playerPanel{display:grid;grid-template-columns:58px 1fr auto;gap:10px;align-items:start}
+.avatarRune{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-size:25px;
+ background:radial-gradient(circle at 35% 30%,#d8ddff,#6d6b9b 45%,#262744 72%);border:2px solid #e3c58a;
+ box-shadow:0 0 18px rgba(127,160,255,.28)}
+.playerMeta b{font-size:18px;display:block}.playerMeta span{font-size:15px}.playerMeta small{display:block;margin-top:5px;font-size:10px;color:#b8c5dd}
+.playerExp{width:145px;height:7px;background:#020713;border:1px solid #8195b8;margin-top:4px}.playerExp i{display:block;width:61%;height:100%;background:linear-gradient(90deg,#6ca5ff,#b6d6ff)}
+.mottoScript{text-align:right;font-family:cursive;font-style:italic;line-height:1.6;color:#bdc9e6;transform:rotate(-5deg);font-size:13px}
+
+.heroTitle{text-align:center;padding:38px 0 30px}
+.heroTitle h1{margin:0;color:#f5f7ff;font-size:clamp(25px,7vw,36px);font-weight:800;letter-spacing:.13em;
+ text-shadow:0 0 7px #7aa5ff,0 0 22px rgba(66,118,255,.65)}
+.heroTitle div{margin-top:10px;color:#cbd7ee;letter-spacing:.27em;font-size:12px}
+
+.premiumFactionGrid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:25px 11px!important;max-width:590px;margin:auto}
+.premiumFactionGrid .gameFactionCard{min-height:0!important;padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;color:#fff!important;overflow:visible!important;text-align:center!important}
+.premiumFactionGrid .cardVisual{width:min(18vw,82px)!important;height:min(18vw,82px)!important;margin:auto!important;border-radius:20px!important;
+ border:1px solid rgba(232,238,255,.75)!important;box-shadow:inset 0 0 0 2px rgba(255,255,255,.13),0 0 16px rgba(90,135,255,.28)!important}
+.premiumFactionGrid .cardVisual:after{display:none!important}
+.premiumFactionGrid .bigIcon{font-size:36px!important;filter:drop-shadow(0 0 7px rgba(255,255,255,.45))!important}
+.premiumFactionGrid .cardBody{padding:8px 0 0!important;width:100%!important;display:block!important}
+.premiumFactionGrid .cardBody b{font-size:12px!important;color:#f5f7ff!important;line-height:1.35!important;white-space:normal!important;min-height:33px;text-shadow:0 2px 3px #000}
+.premiumFactionGrid .cardBody small,.premiumFactionGrid .miniBar,.premiumFactionGrid .pct{display:none!important}
+.premiumFactionGrid .gameFactionCard:nth-child(1) .cardVisual{background:radial-gradient(circle at 50% 40%,#ef7882,#9c263c 62%,#3d1122)!important}
+.premiumFactionGrid .gameFactionCard:nth-child(2) .cardVisual{background:radial-gradient(circle at 50% 40%,#e2bd64,#9c6921 62%,#463013)!important}
+.premiumFactionGrid .gameFactionCard:nth-child(3) .cardVisual{background:radial-gradient(circle at 50% 40%,#79c18c,#337250 62%,#143b2a)!important}
+.premiumFactionGrid .gameFactionCard:nth-child(4) .cardVisual{background:radial-gradient(circle at 50% 40%,#efc66e,#9b6c23 62%,#48300e)!important}
+.premiumFactionGrid .gameFactionCard:nth-child(5) .cardVisual{background:radial-gradient(circle at 50% 40%,#71b6ff,#315fa7 62%,#142d5a)!important}
+.premiumFactionGrid .gameFactionCard:nth-child(6) .cardVisual{background:radial-gradient(circle at 50% 40%,#bd8de0,#684394 62%,#301c50)!important}
+.premiumFactionGrid .gameFactionCard:nth-child(7) .cardVisual{background:radial-gradient(circle at 50% 40%,#ee788c,#a42d49 62%,#471326)!important}
+
+.ambientScene{position:relative;height:230px;margin-top:24px;border-top:1px solid rgba(170,196,235,.12);color:#d4dced}
+.ambientScene:before{content:"";position:absolute;left:-18px;right:-18px;bottom:0;height:90px;background:linear-gradient(180deg,transparent,#0b0d14 45%,#08090e)}
+.ambientScene .lamp{position:absolute;left:8px;bottom:78px;color:#ffd589;font-size:35px;text-shadow:0 0 14px #ffb74e}
+.books{position:absolute;left:5px;bottom:20px;font:10px/1.9 monospace;color:#a9825b;border-left:20px solid #2b201a;padding-left:6px}
+.cat{position:absolute;left:50%;bottom:35px;transform:translateX(-50%);font-size:34px;color:#d8d1c6;text-shadow:0 3px 5px #000}
+.cup{position:absolute;right:12px;bottom:28px;font-size:35px}
+.ambientScene small{position:absolute;right:5px;top:40px;text-align:right;font-size:10px;line-height:1.8;color:#bac7db}
+
+.premiumDock{position:fixed!important;left:50%!important;transform:translateX(-50%)!important;bottom:12px!important;
+ width:min(calc(100% - 24px),600px)!important;margin:0!important;padding:7px!important;z-index:100!important;
+ border-radius:25px!important;border:1px solid rgba(177,196,227,.35)!important;background:rgba(12,20,36,.88)!important;
+ backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;box-shadow:0 10px 30px rgba(0,0,0,.45)!important}
+.premiumDock button{min-height:60px!important;border-radius:18px!important;color:#cdd8eb!important}
+.premiumDock button.active{background:rgba(43,88,155,.55)!important;color:#8fc2ff!important;text-shadow:0 0 8px #4b9cff}
+.premiumDock button span{font-size:11px!important}
+.gameMenuSheet{background:#101a2d!important;color:#e7eefb!important;border-color:#536b91!important}
+
+@media(max-width:390px){
+ #gameHomePreview.premiumHome{padding-left:12px!important;padding-right:12px!important}
+ .premiumFactionGrid{gap:21px 7px!important}
+ .premiumFactionGrid .cardBody b{font-size:10px!important}
+ .mottoScript{font-size:11px}
+}
+
+
+/* v4.3 首頁固定一屏：只顯示限時挑戰 + 七大陣營 */
+html,body{height:100%;}
+
+#gameHomePreview.premiumHome{
+  height:100svh!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding:12px 12px 14px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+
+/* 首頁隱藏所有裝飾、玩家資訊、標題、Dock */
+#gameHomePreview .playerPanel,
+#gameHomePreview .heroTitle,
+#gameHomePreview .ambientScene,
+#gameHomePreview .gameDock{
+  display:none!important;
+}
+
+/* 限時挑戰：有才顯示 */
+#gameHomePreview .gameEventBanner{
+  display:none;
+  flex:0 0 auto;
+  margin:0 auto 18px!important;
+  width:min(100%,560px);
+  box-sizing:border-box;
+}
+
+/* 七個陣營固定在同一屏 */
+#gameHomePreview .premiumFactionGrid{
+  flex:0 0 auto;
+  width:min(100%,560px);
+  margin:0 auto!important;
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:28px 10px!important;
+  align-items:start!important;
+}
+#gameHomePreview .premiumFactionGrid .cardVisual{
+  width:min(18vw,78px)!important;
+  height:min(18vw,78px)!important;
+}
+#gameHomePreview .premiumFactionGrid .cardBody{padding-top:7px!important;}
+#gameHomePreview .premiumFactionGrid .cardBody b{
+  min-height:30px!important;
+  font-size:11px!important;
+}
+
+/* 其他獨立頁仍可正常捲動 */
+body:has(#gameHomePreview[style*="display: block"]),
+body:has(#gameHomePreview[style*="display:block"]){
+  overflow:hidden;
+}
+main>.page:not(#gameHomePreview){
+  min-height:100svh;
+  overflow:auto;
+  padding-bottom:24px!important;
+}
+
+@media(max-height:650px){
+ #gameHomePreview .premiumFactionGrid{gap:18px 8px!important}
+ #gameHomePreview .premiumFactionGrid .cardVisual{width:60px!important;height:60px!important}
+}
+
+
+/* v4.4 高對比：深色背景使用亮字，淺色面板使用深字 */
+#gameHomePreview.premiumHome,
+#gameHomePreview.premiumHome button{
+  color:#f7f2e8!important;
+}
+#gameHomePreview .premiumFactionGrid .cardBody b{
+  color:#ffffff!important;
+  text-shadow:0 2px 4px #000,0 0 8px rgba(0,0,0,.9)!important;
+  font-weight:900!important;
+}
+#gameHomePreview .gameEventBanner{
+  color:#fff8e8!important;
+  background:rgba(7,14,29,.92)!important;
+  border-color:#9ab8ed!important;
+  text-shadow:0 1px 3px #000!important;
+}
+#gameHomePreview .gameEventBanner .eyebrow{
+  color:#bcd3ff!important;
+  opacity:1!important;
+}
+#gameHomePreview .gameEventBanner strong{
+  color:#ffffff!important;
+}
+
+/* 內頁仍為暖色淺底，因此統一使用深棕文字 */
+main>.page:not(#gameHomePreview){
+  color:#3b281d!important;
+}
+main>.page:not(#gameHomePreview) h1,
+main>.page:not(#gameHomePreview) h2,
+main>.page:not(#gameHomePreview) h3,
+main>.page:not(#gameHomePreview) b,
+main>.page:not(#gameHomePreview) label{
+  color:#342117;
+}
+
+
+/* v4.5 陣營頁工具列 */
+.factionUtilityBar{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;
+ margin:10px 0 16px;padding:9px;background:#5e402e;border:3px solid #3c281d;
+ box-shadow:3px 4px 0 rgba(55,34,23,.25)
+}
+.factionUtilityBar button{
+ min-height:48px;padding:6px 3px;font-size:12px;background:#f4d39d;color:#3b281d
+}
+@media(max-width:420px){
+ .factionUtilityBar{grid-template-columns:repeat(4,minmax(0,1fr))}
+ .factionUtilityBar button{font-size:10px}
+}
+
+
+/* v4.6：功能 Bar 永久固定於手機底部 */
+#gameHomePreview .gameDock{
+ display:grid!important;
+ position:fixed!important;
+ left:50%!important;
+ transform:translateX(-50%)!important;
+ bottom:10px!important;
+ width:min(calc(100% - 20px),560px)!important;
+ grid-template-columns:repeat(4,1fr)!important;
+ gap:4px!important;
+ margin:0!important;
+ padding:7px!important;
+ z-index:500!important;
+ border-radius:24px!important;
+ background:rgba(9,17,32,.94)!important;
+ border:1px solid rgba(178,202,240,.38)!important;
+ box-shadow:0 10px 28px rgba(0,0,0,.46)!important;
+ backdrop-filter:blur(18px)!important;
+ -webkit-backdrop-filter:blur(18px)!important;
+}
+#gameHomePreview .gameDock button{
+ display:block!important;
+ min-height:58px!important;
+ border:0!important;
+ border-radius:17px!important;
+ background:transparent!important;
+ color:#dce8fa!important;
+ box-shadow:none!important;
+ font-size:20px!important;
+}
+#gameHomePreview .gameDock button span{
+ display:block!important;
+ margin-top:3px!important;
+ font-size:11px!important;
+}
+#gameHomePreview .gameDock button.active{
+ background:rgba(56,103,171,.5)!important;
+ color:#91c7ff!important;
+}
+
+/* 固定首頁本身仍不可捲動，但替底部 Bar 留空間 */
+#gameHomePreview.premiumHome{
+ padding-bottom:92px!important;
+}
+
+/* Bar 在切到其他獨立頁時也保留 */
+body>.persistentDock{display:none}
+
+
+main>.gameDock.persistentDock{
+ display:grid!important;position:fixed!important;left:50%!important;transform:translateX(-50%)!important;
+ bottom:10px!important;width:min(calc(100% - 20px),560px)!important;grid-template-columns:repeat(4,1fr)!important;
+ gap:4px!important;margin:0!important;padding:7px!important;z-index:500!important;border-radius:24px!important;
+ background:rgba(9,17,32,.94)!important;border:1px solid rgba(178,202,240,.38)!important;
+ box-shadow:0 10px 28px rgba(0,0,0,.46)!important;backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important
+}
+main>.gameDock.persistentDock button{min-height:58px!important;border:0!important;border-radius:17px!important;background:transparent!important;color:#dce8fa!important;box-shadow:none!important;font-size:20px!important}
+main>.gameDock.persistentDock button span{display:block!important;font-size:11px!important;margin-top:3px!important}
+main>.page:not(#gameHomePreview){padding-bottom:96px!important}
+
+/* v4.7 最終導覽規則
+   首頁：固定一屏，只顯示限時挑戰 + 七大陣營，不顯示任何功能列。
+   陣營內：才顯示固定功能 Bar，其他頁可捲動。 */
+
+/* 首頁永久鎖定一屏 */
+#gameHomePreview.premiumHome{
+  height:100svh!important;
+  min-height:100svh!important;
+  max-height:100svh!important;
+  overflow:hidden!important;
+  padding:14px 12px 18px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+
+/* 首頁只留活動 + 七陣營 */
+#gameHomePreview .playerPanel,
+#gameHomePreview .heroTitle,
+#gameHomePreview .ambientScene,
+#gameHomePreview .gameDock{
+  display:none!important;
+}
+
+/* 全站浮動 Dock 預設隱藏；只有進入陣營/陣營相關頁才打開 */
+main>.gameDock.persistentDock{
+  display:none!important;
+}
+
+/* 首頁七陣營保持同一屏 */
+#gameHomePreview .premiumFactionGrid{
+  width:min(100%,560px)!important;
+  margin:0 auto!important;
+  flex:0 0 auto!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:24px 10px!important;
+}
+#gameHomePreview .premiumFactionGrid .cardVisual{
+  width:min(18vw,76px)!important;
+  height:min(18vw,76px)!important;
+}
+#gameHomePreview .premiumFactionGrid .cardBody b{
+  font-size:11px!important;
+  line-height:1.25!important;
+}
+
+/* 陣營與其內部頁面，為底部功能列留空間 */
+main>.page:not(#gameHomePreview){
+  padding-bottom:96px!important;
+}
+
+
+/* v4.8：底部 Bar 在首頁與陣營內都永久固定在同一位置 */
+main>.gameDock.persistentDock,
+#gameHomePreview .gameDock{
+  display:grid!important;
+  position:fixed!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  bottom:max(10px, env(safe-area-inset-bottom))!important;
+  width:min(calc(100% - 20px),560px)!important;
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:4px!important;
+  margin:0!important;
+  padding:7px!important;
+  z-index:999!important;
+  border-radius:24px!important;
+  background:rgba(9,17,32,.94)!important;
+  border:1px solid rgba(178,202,240,.38)!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.46)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+}
+
+/* 首頁仍鎖一屏，但替固定 Bar 留出空間 */
+#gameHomePreview.premiumHome{
+  height:100svh!important;
+  min-height:100svh!important;
+  max-height:100svh!important;
+  overflow:hidden!important;
+  padding-bottom:96px!important;
+  box-sizing:border-box!important;
+}
+
+/* 所有陣營與功能頁也預留相同底部空間 */
+main>.page:not(#gameHomePreview){
+  padding-bottom:104px!important;
+}
+
+
+/* v4.9：底部 Bar 與選單高對比 */
+main>.gameDock.persistentDock,
+#gameHomePreview .gameDock{
+  background:rgba(5,10,20,.97)!important;
+  border-color:rgba(190,215,255,.55)!important;
+}
+
+/* Bar 圖示與文字：深底配亮字 */
+main>.gameDock.persistentDock button,
+#gameHomePreview .gameDock button{
+  color:#ffffff!important;
+  text-shadow:0 1px 3px rgba(0,0,0,.95)!important;
+  font-weight:800!important;
+}
+main>.gameDock.persistentDock button span,
+#gameHomePreview .gameDock button span{
+  color:#ffffff!important;
+  opacity:1!important;
+  font-weight:800!important;
+}
+
+/* 目前選取項目使用亮藍底＋白字 */
+main>.gameDock.persistentDock button.active,
+#gameHomePreview .gameDock button.active{
+  background:#2d68b6!important;
+  color:#ffffff!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.22),0 0 12px rgba(91,160,255,.28)!important;
+}
+
+/* 選單面板：深色背景＋亮色文字 */
+#gameMenuSheet.gameMenuSheet{
+  background:#0b1425!important;
+  color:#ffffff!important;
+  border:1px solid #86a9df!important;
+}
+#gameMenuSheet .sheetTop,
+#gameMenuSheet .sheetTop b{
+  color:#ffffff!important;
+}
+#gameMenuSheet .sheetTop button{
+  background:#243a59!important;
+  color:#ffffff!important;
+  border:1px solid #8fb4ea!important;
+}
+
+/* 選單項目：淺底配深字，圖示同步高對比 */
+#gameMenuSheet .menuGrid button{
+  background:#eef4ff!important;
+  color:#17243a!important;
+  border:1px solid #8aa5cf!important;
+  font-weight:800!important;
+  text-shadow:none!important;
+}
+#gameMenuSheet .menuGrid button span{
+  color:#17243a!important;
+  opacity:1!important;
+  font-weight:800!important;
+}
+
+
+/* v5.0 Dock 導航頁 */
+#gameMenuSheet{display:none!important}
+
+#systemMenuPage{
+  min-height:100svh;
+  box-sizing:border-box;
+  padding:20px 14px 110px!important;
+}
+.systemMenuHeader{
+  max-width:620px;margin:0 auto 14px;
+}
+.systemMenuHeader h2{margin:0 0 5px}
+.systemMenuHeader p{margin:0;color:#654b3a}
+.systemMenuGrid{
+  max-width:620px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;
+}
+.systemMenuGrid button{
+  min-height:82px;
+  padding:12px 8px;
+  border:2px solid #6e513d;
+  background:#f7e1bd;
+  color:#302015!important;
+  font-weight:900;
+  font-size:16px;
+  box-shadow:3px 4px 0 rgba(49,31,20,.18);
+}
+.systemMenuGrid button span{
+  display:block;
+  margin-top:5px;
+  color:#302015!important;
+  font-size:12px;
+  font-weight:800;
+}
+main>.gameDock.persistentDock button[data-nav].active{
+  background:#2d68b6!important;
+  color:#fff!important;
+}
+main>.gameDock.persistentDock button[data-nav].active span{
+  color:#fff!important;
+}
+
+
+/* v5.1：恢復原本完整選單 */
+.systemMenuGrid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+}
+.systemMenuGrid button{
+  min-height:78px!important;
+}
+#standaloneChallengePage{
+  min-height:100svh;
+  padding:18px 14px 110px!important;
+  box-sizing:border-box;
+}
+.challengePageWrap{
+  max-width:650px;
+  margin:0 auto;
+}
+.challengePageForm{
+  display:grid;
+  gap:8px;
+  margin:12px 0 16px;
+  padding:12px;
+  background:#f6dfbc;
+  border:2px solid #72523d;
+}
+.challengePageForm input{
+  min-height:42px;
+  box-sizing:border-box;
+}
+.challengePageList{
+  display:grid;
+  gap:10px;
+}
+
+
+/* v5.2：全站文字與背景高對比 */
+
+/* 首頁：深色背景 -> 全部亮字 */
+#gameHomePreview,
+#gameHomePreview *{
+  color:#ffffff!important;
+}
+#gameHomePreview .premiumFactionGrid .cardBody b{
+  color:#ffffff!important;
+  text-shadow:0 2px 4px #000,0 0 8px #000!important;
+}
+#gameHomePreview .gameEventBanner,
+#gameHomePreview .gameEventBanner *{
+  color:#ffffff!important;
+}
+#gameHomePreview .gameEventBanner{
+  background:#08101f!important;
+  border-color:#9fc2ff!important;
+}
+
+/* 底部 Bar：深色背景 -> 白字白圖示 */
+main>.gameDock.persistentDock,
+#gameHomePreview .gameDock{
+  background:#050a14!important;
+}
+main>.gameDock.persistentDock button,
+main>.gameDock.persistentDock button *,
+#gameHomePreview .gameDock button,
+#gameHomePreview .gameDock button *{
+  color:#ffffff!important;
+  opacity:1!important;
+  text-shadow:0 1px 3px #000!important;
+}
+main>.gameDock.persistentDock button.active,
+#gameHomePreview .gameDock button.active{
+  background:#2c67b5!important;
+}
+
+/* 一般內頁：淺色背景 -> 深色字 */
+main>.page:not(#gameHomePreview){
+  color:#241810!important;
+}
+main>.page:not(#gameHomePreview) h1,
+main>.page:not(#gameHomePreview) h2,
+main>.page:not(#gameHomePreview) h3,
+main>.page:not(#gameHomePreview) h4,
+main>.page:not(#gameHomePreview) h5,
+main>.page:not(#gameHomePreview) h6,
+main>.page:not(#gameHomePreview) p,
+main>.page:not(#gameHomePreview) b,
+main>.page:not(#gameHomePreview) strong,
+main>.page:not(#gameHomePreview) label,
+main>.page:not(#gameHomePreview) small,
+main>.page:not(#gameHomePreview) span,
+main>.page:not(#gameHomePreview) div,
+main>.page:not(#gameHomePreview) li,
+main>.page:not(#gameHomePreview) td,
+main>.page:not(#gameHomePreview) th{
+  color:#241810;
+}
+
+/* 淺色卡片 / 面板 */
+.card,.panel,.goalCard,.taskCard,.challengeCard,.drop,.historyItem,
+.goalRow,.taskRow,.inventory,.goalList,.taskList,.sectionBox,
+.systemMenuHeader,.systemMenuGrid button,.challengePageForm{
+  color:#241810!important;
+}
+.card *,.panel *,.goalCard *,.taskCard *,.challengeCard *,.drop *,
+.historyItem *,.goalRow *,.taskRow *,.inventory *,.goalList *,.taskList *,
+.sectionBox *,.systemMenuHeader *,.systemMenuGrid button *,
+.challengePageForm *{
+  color:#241810!important;
+}
+
+/* 深色面板 -> 白字 */
+.dark,.darkPanel,.modal,.sheet,.gameMenuSheet,
+#gameMenuSheet,.factionUtilityBar{
+  color:#ffffff!important;
+}
+.dark *,.darkPanel *,.modal *,.sheet *,.gameMenuSheet *,
+#gameMenuSheet *,.factionUtilityBar *{
+  color:#ffffff!important;
+}
+
+/* 按鈕：亮底深字；深色按鈕另外白字 */
+button{
+  color:#1f160f!important;
+  font-weight:800!important;
+}
+button.good,button.primary,button.active,button.danger,
+button[class*="dark"],button[class*="blue"]{
+  color:#ffffff!important;
+}
+button.good *,button.primary *,button.active *,button.danger *,
+button[class*="dark"] *,button[class*="blue"] *{
+  color:#ffffff!important;
+}
+
+/* 輸入框：白底深字 */
+input,select,textarea{
+  background:#ffffff!important;
+  color:#17120e!important;
+  border-color:#6c533f!important;
+}
+input::placeholder,textarea::placeholder{
+  color:#62584f!important;
+  opacity:1!important;
+}
+
+/* 次要文字也不能淡到看不清 */
+.muted,.sub,.hint,.eyebrow,.deadline,.meta,.desc,
+[class*="muted"],[class*="hint"],[class*="meta"]{
+  opacity:1!important;
+}
+
+/* 系統選單：淺色按鈕深字 */
+#systemMenuPage .systemMenuGrid button,
+#systemMenuPage .systemMenuGrid button *{
+  background:#f7e1bd!important;
+  color:#241810!important;
+  text-shadow:none!important;
+}
+
+/* 限時挑戰獨立頁 */
+#standaloneChallengePage,
+#standaloneChallengePage *{
+  color:#241810;
+}
+#standaloneChallengePage button.good,
+#standaloneChallengePage button.good *{
+  color:#ffffff!important;
+}
+
+/* 避免 inline 灰色文字降低對比 */
+[style*="color:#999"],[style*="color: #999"],
+[style*="color:#888"],[style*="color: #888"],
+[style*="color:#777"],[style*="color: #777"],
+[style*="color:#666"],[style*="color: #666"]{
+  color:#3b2a20!important;
+  opacity:1!important;
+}
+
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -340,6 +1307,63 @@ html,body{
   </div>
 </header>
 <main>
+
+
+<section id="gameHomePreview" class="page gameHome premiumHome">
+  <div class="nightBackdrop">
+    <div class="stars"></div>
+    <div class="cityGlow"></div>
+  </div>
+
+  <div class="playerPanel">
+    <div class="avatarRune">✦</div>
+    <div class="playerMeta">
+      <b>小小</b>
+      <span>Lv.125</span>
+      <div class="playerExp"><i></i></div>
+      <small>今天也辛苦了，繼續前進吧。</small>
+    </div>
+    <div class="mottoScript">A better me<br>Every day.</div>
+  </div>
+
+  <div class="heroTitle">
+    <h1>為了想成為的自己</h1>
+    <div>— 作 戰 養 成 計 畫 —</div>
+  </div>
+
+  <div id="gameFactionGrid" class="gameFactionGrid premiumFactionGrid"></div>
+
+  <div class="ambientScene">
+    <div class="lamp">✦</div>
+    <div class="books">PLAN<br>STUDY<br>BETTER ME</div>
+    <div class="cat">ᓚᘏᗢ</div>
+    <div class="cup">☕</div>
+    <small>每一點行動，<br>都在靠近理想的自己。</small>
+  </div>
+
+  <nav class="gameDock premiumDock" aria-label="主要功能">
+    <button data-nav="home" class="active" onclick="dockGoHome()">⌂<span>首頁</span></button>
+    <button data-nav="goals" onclick="dockGoGoals()">◎<span>目標</span></button>
+    <button data-nav="history" onclick="dockGoHistory()">▥<span>紀錄</span></button>
+    <button data-nav="menu" onclick="dockGoMenu()">⚙<span>選單</span></button>
+  </nav>
+
+  <div id="gameMenuSheet" class="gameMenuSheet" style="display:none">
+    <div class="sheetTop"><b>系統選單</b><button onclick="toggleGameMenu()">×</button></div>
+    <div class="menuGrid">
+      <button onclick="openAllGoals();toggleGameMenu()">🎯<span>全部目標</span></button>
+      <button onclick="openRecentGoals();toggleGameMenu()">🕘<span>最近目標</span></button>
+      <button onclick="openChallenges();toggleGameMenu()">⏳<span>限時挑戰</span></button>
+      <button onclick="openMissed();toggleGameMenu()">⚠<span>未完成</span></button>
+      <button onclick="openHistory();toggleGameMenu()">📜<span>完成紀錄</span></button>
+      <button onclick="downloadJSONSave();toggleGameMenu()">💾<span>備份存檔</span></button>
+      <button onclick="document.getElementById('importFile')?.click();toggleGameMenu()">⇧<span>匯入存檔</span></button>
+    </div>
+  </div>
+</section>
+
+
+
 <section class="card hero app-detail">
   <div class="avatar">◇</div>
   <div>
@@ -1166,6 +2190,635 @@ document.addEventListener("visibilitychange",()=>{
 window.addEventListener("focus",checkBackupReminder);
 setInterval(checkBackupReminder,60000);
 setTimeout(checkBackupReminder,700);
+
+
+function renderGamePreview(){
+ const grid=document.getElementById("gameFactionGrid"); if(!grid)return;
+ grid.innerHTML=(s.factions||[]).map((f,fi)=>{
+   const pct=typeof factionProgressPercent==="function"?factionProgressPercent(fi):0;
+   const def=factionDefs[fi]||{};
+   return `<button class="gameFactionCard" onclick="openFaction(${fi})">
+     <div class="cardVisual"><span class="bigIcon">${def.icon||"✦"}</span></div>
+     <div class="cardBody">
+       <b>${esc(f.name||def.name||"陣營")}</b>
+       <small>${(f.goals||[]).length} 個目標 · ${pct.toFixed(0)}%</small>
+       <div class="miniBar"><i style="width:${Math.max(0,Math.min(100,pct))}%"></i></div>
+       <div class="pct">PROGRESS ${pct.toFixed(0)}%</div>
+     </div>
+   </button>`;
+ }).join("");
+
+ const now=Date.now();
+ const active=(s.challenges||[]).filter(c=>!c.done&&c.deadline&&new Date(c.deadline).getTime()>now)
+   .sort((a,b)=>new Date(a.deadline)-new Date(b.deadline))[0];
+ const banner=document.getElementById("gameEventBanner");
+ if(active&&banner){
+   banner.style.display="flex";
+   document.getElementById("gameEventTitle").textContent=active.title;
+   let ms=Math.max(0,new Date(active.deadline)-now),d=Math.floor(ms/86400000);ms%=86400000;
+   let hr=Math.floor(ms/3600000);ms%=3600000;let m=Math.floor(ms/60000);let sec=Math.floor(ms%60000/1000);
+   document.getElementById("gameEventTime").textContent=`${d}天 ${String(hr).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+ }else if(banner) banner.style.display="none";
+}
+function showGamePreview(){
+ document.querySelectorAll("main>.page").forEach(x=>x.style.display="none");
+ const p=document.getElementById("gameHomePreview");if(p)p.style.display="";
+ renderGamePreview();
+}
+function toggleGameMenu(){
+ const x=document.getElementById("gameMenuSheet");if(!x)return;
+ x.style.display=x.style.display==="none"?"block":"none";
+}
+setInterval(renderGamePreview,1000);
+setTimeout(showGamePreview,80);
+
+
+/* v4.0：手機首頁統一回到新的主畫面 */
+const legacyGoHome = typeof goHome==="function" ? goHome : null;
+goHome = function(){
+  if(window.innerWidth < 760){
+    document.querySelectorAll("main>.page").forEach(x=>x.style.display="none");
+    const p=document.getElementById("gameHomePreview");
+    if(p){p.style.display="";renderGamePreview();}
+  }else if(legacyGoHome){
+    legacyGoHome();
+  }else{
+    showGamePreview();
+  }
+};
+
+
+/* v4.1 navigation controller: exactly one page is visible at a time */
+function hideAllAppPages(){
+  document.querySelectorAll("main>.page").forEach(p=>p.style.display="none");
+}
+function showGamePreview(){
+  hideAllAppPages();
+  const p=document.getElementById("gameHomePreview");
+  if(p){p.style.display="block";renderGamePreview();}
+  const sheet=document.getElementById("gameMenuSheet");
+  if(sheet)sheet.style.display="none";
+  window.scrollTo(0,0);
+}
+goHome = showGamePreview;
+
+/* Prevent the legacy home from reappearing after generic renders. */
+const v41Render = render;
+render = function(){
+  v41Render();
+  const old=document.getElementById("home");
+  if(old)old.style.display="none";
+};
+
+/* Always start on the clean launcher. */
+setTimeout(showGamePreview,120);
+
+
+const v43ShowGamePreview = showGamePreview;
+showGamePreview = function(){
+  v43ShowGamePreview();
+  document.documentElement.style.overflow="hidden";
+  document.body.style.overflow="hidden";
+};
+goHome = showGamePreview;
+
+function unlockPageScroll(){
+  document.documentElement.style.overflow="";
+  document.body.style.overflow="";
+}
+
+/* Wrap independent-page entry functions so those pages can scroll normally. */
+["openFaction","openGoal","openAllGoals","openRecentGoals","openHistory","openChallenges","openMissed"].forEach(name=>{
+  const old=window[name];
+  if(typeof old==="function"){
+    window[name]=function(...args){
+      unlockPageScroll();
+      return old.apply(this,args);
+    };
+  }
+});
+setTimeout(showGamePreview,150);
+
+
+/* v4.5 修復：首頁圖示真正切換到陣營獨立頁 */
+const v45OriginalOpenFaction = openFaction;
+openFaction = function(fi){
+  unlockPageScroll();
+  hideAllAppPages();
+  v45OriginalOpenFaction(fi);
+
+  const page=document.getElementById("factionPage");
+  if(page)page.style.display="block";
+
+  /* 其他功能只在進入陣營後提供 */
+  let bar=document.getElementById("factionUtilityBar");
+  if(!bar && page){
+    bar=document.createElement("div");
+    bar.id="factionUtilityBar";
+    bar.className="factionUtilityBar";
+    bar.innerHTML=`
+      <button onclick="openHistory()">📜<br>完成紀錄</button>
+      <button onclick="openMissed()">⚠<br>未完成</button>
+      <button onclick="openChallenges()">⏳<br>限時挑戰</button>
+      <button onclick="downloadJSONSave()">💾<br>備份</button>`;
+    const body=document.getElementById("factionPageBody");
+    if(body)body.parentNode.insertBefore(bar,body);
+  }
+  window.scrollTo(0,0);
+};
+
+/* 目標頁同樣必須把首頁完全關掉 */
+const v45OriginalOpenGoal = openGoal;
+openGoal = function(fi,gi){
+  unlockPageScroll();
+  const launcher=document.getElementById("gameHomePreview");
+  if(launcher)launcher.style.display="none";
+  return v45OriginalOpenGoal(fi,gi);
+};
+
+/* 從任何獨立頁返回，才重新鎖定並顯示七陣營首頁 */
+goHome = function(){
+  hideAllAppPages();
+  const launcher=document.getElementById("gameHomePreview");
+  if(launcher){
+    launcher.style.display="flex";
+    renderGamePreview();
+  }
+  document.documentElement.style.overflow="hidden";
+  document.body.style.overflow="hidden";
+  window.scrollTo(0,0);
+};
+
+setTimeout(goHome,180);
+
+
+/* v4.6 將首頁 Dock 提升為全站永久 Dock */
+function ensurePersistentDock(){
+ let dock=document.querySelector("#gameHomePreview .gameDock") || document.querySelector("main>.gameDock.persistentDock");
+ if(!dock)return;
+ dock.classList.add("persistentDock");
+ if(dock.parentElement && dock.parentElement.id==="gameHomePreview"){
+   document.querySelector("main").appendChild(dock);
+ }
+ dock.style.display="grid";
+}
+setTimeout(ensurePersistentDock,50);
+
+/* 永久 Dock 樣式與頁面切換 */
+const v46HideAll=hideAllAppPages;
+hideAllAppPages=function(){
+ v46HideAll();
+ ensurePersistentDock();
+ const dock=document.querySelector("main>.gameDock.persistentDock");
+ if(dock)dock.style.display="grid";
+};
+
+setTimeout(()=>{
+ ensurePersistentDock();
+ const dock=document.querySelector("main>.gameDock.persistentDock");
+ if(dock){
+   dock.style.cssText += "display:grid!important;position:fixed!important;left:50%!important;transform:translateX(-50%)!important;bottom:10px!important;width:min(calc(100% - 20px),560px)!important;grid-template-columns:repeat(4,1fr)!important;z-index:500!important;";
+ }
+},220);
+
+
+/* v4.7：首頁不顯示功能 Bar，只有進入陣營後才顯示 */
+function v47Dock(){
+  return document.querySelector("main>.gameDock.persistentDock") ||
+         document.querySelector("#gameHomePreview .gameDock");
+}
+function v47HideDock(){
+  const dock=v47Dock();
+  if(dock) dock.style.setProperty("display","none","important");
+}
+function v47ShowDock(){
+  let dock=v47Dock();
+  if(!dock)return;
+  if(dock.parentElement && dock.parentElement.id==="gameHomePreview"){
+    dock.classList.add("persistentDock");
+    document.querySelector("main").appendChild(dock);
+  }
+  dock.style.setProperty("display","grid","important");
+}
+function v47LockHome(){
+  document.documentElement.style.overflow="hidden";
+  document.body.style.overflow="hidden";
+}
+function v47Unlock(){
+  document.documentElement.style.overflow="";
+  document.body.style.overflow="";
+}
+
+/* 首頁：七陣營 + 有活動才出現的限時挑戰；完全不可上下滑 */
+showGamePreview = function(){
+  hideAllAppPages();
+  const p=document.getElementById("gameHomePreview");
+  if(p){
+    p.style.display="flex";
+    renderGamePreview();
+  }
+  const sheet=document.getElementById("gameMenuSheet");
+  if(sheet)sheet.style.display="none";
+  v47HideDock();
+  v47LockHome();
+  window.scrollTo(0,0);
+};
+goHome = showGamePreview;
+
+/* 點陣營後：解鎖捲動 + 顯示功能 Bar */
+const v47BaseOpenFaction = openFaction;
+openFaction = function(fi){
+  v47Unlock();
+  hideAllAppPages();
+  v47BaseOpenFaction(fi);
+  const page=document.getElementById("factionPage");
+  if(page) page.style.display="block";
+  v47ShowDock();
+  window.scrollTo(0,0);
+};
+
+/* 從陣營內進入目標/紀錄/挑戰等，Bar 持續存在 */
+["openGoal","openAllGoals","openRecentGoals","openHistory","openChallenges","openMissed"].forEach(name=>{
+  const base=window[name];
+  if(typeof base==="function"){
+    window[name]=function(...args){
+      v47Unlock();
+      const launcher=document.getElementById("gameHomePreview");
+      if(launcher) launcher.style.display="none";
+      const result=base.apply(this,args);
+      v47ShowDock();
+      return result;
+    };
+  }
+});
+
+/* 保險：載入時回到真正首頁，不顯示 Bar */
+setTimeout(showGamePreview,220);
+
+
+/* v4.8：Dock 永久存在，首頁與陣營內位置完全一致 */
+function v48EnsureDock(){
+  let dock=document.querySelector("main>.gameDock.persistentDock") ||
+           document.querySelector("#gameHomePreview .gameDock");
+  if(!dock)return null;
+
+  dock.classList.add("persistentDock");
+  const main=document.querySelector("main");
+  if(main && dock.parentElement!==main){
+    main.appendChild(dock);
+  }
+
+  dock.style.setProperty("display","grid","important");
+  dock.style.setProperty("position","fixed","important");
+  dock.style.setProperty("left","50%","important");
+  dock.style.setProperty("transform","translateX(-50%)","important");
+  dock.style.setProperty("bottom","max(10px, env(safe-area-inset-bottom))","important");
+  return dock;
+}
+
+/* 首頁：仍然只有七陣營＋限時挑戰作為內容，但底部 Bar 固定可見 */
+showGamePreview = function(){
+  hideAllAppPages();
+  const page=document.getElementById("gameHomePreview");
+  if(page){
+    page.style.display="flex";
+    renderGamePreview();
+  }
+  const sheet=document.getElementById("gameMenuSheet");
+  if(sheet)sheet.style.display="none";
+
+  document.documentElement.style.overflow="hidden";
+  document.body.style.overflow="hidden";
+  v48EnsureDock();
+  window.scrollTo(0,0);
+};
+goHome = showGamePreview;
+
+/* 點進陣營後：解除頁面捲動鎖，但 Dock 完全不移動 */
+const v48BaseOpenFaction = openFaction;
+openFaction = function(fi){
+  document.documentElement.style.overflow="";
+  document.body.style.overflow="";
+  hideAllAppPages();
+  const result=v48BaseOpenFaction(fi);
+  const page=document.getElementById("factionPage");
+  if(page)page.style.display="block";
+  v48EnsureDock();
+  window.scrollTo(0,0);
+  return result;
+};
+
+/* 其他頁面同樣保持同一個固定 Dock */
+["openGoal","openAllGoals","openRecentGoals","openHistory","openChallenges","openMissed"].forEach(name=>{
+  const base=window[name];
+  if(typeof base==="function"){
+    window[name]=function(...args){
+      document.documentElement.style.overflow="";
+      document.body.style.overflow="";
+      const launcher=document.getElementById("gameHomePreview");
+      if(launcher)launcher.style.display="none";
+      const result=base.apply(this,args);
+      v48EnsureDock();
+      return result;
+    };
+  }
+});
+
+setTimeout(()=>{
+  v48EnsureDock();
+  showGamePreview();
+},250);
+
+
+/* v5.0：底部 Bar 四個按鈕各自進入真正功能頁 */
+function ensureDockMounted(){
+  let dock=document.querySelector("main>.gameDock.persistentDock") ||
+           document.querySelector("#gameHomePreview .gameDock");
+  if(!dock)return null;
+  dock.classList.add("persistentDock");
+  const main=document.querySelector("main");
+  if(main && dock.parentElement!==main)main.appendChild(dock);
+  dock.style.setProperty("display","grid","important");
+  return dock;
+}
+function setDockActive(name){
+  const dock=ensureDockMounted();
+  if(!dock)return;
+  dock.querySelectorAll("button[data-nav]").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.nav===name);
+  });
+}
+function unlockAppScroll(){
+  document.documentElement.style.overflow="";
+  document.body.style.overflow="";
+}
+function lockHomeScroll(){
+  document.documentElement.style.overflow="hidden";
+  document.body.style.overflow="hidden";
+}
+function closeLegacyMenu(){
+  const sheet=document.getElementById("gameMenuSheet");
+  if(sheet)sheet.style.display="none";
+}
+
+/* 首頁：固定單屏 */
+function dockGoHome(){
+  closeLegacyMenu();
+  hideAllAppPages();
+  const home=document.getElementById("gameHomePreview");
+  if(home){
+    home.style.display="flex";
+    renderGamePreview();
+  }
+  ensureDockMounted();
+  setDockActive("home");
+  lockHomeScroll();
+  window.scrollTo(0,0);
+}
+
+/* 目標頁 */
+function dockGoGoals(){
+  closeLegacyMenu();
+  unlockAppScroll();
+  openAllGoals();
+  ensureDockMounted();
+  setDockActive("goals");
+  window.scrollTo(0,0);
+}
+
+/* 完成紀錄頁 */
+function dockGoHistory(){
+  closeLegacyMenu();
+  unlockAppScroll();
+  hideAllAppPages();
+  openHistory();
+  const history=document.getElementById("historyPage");
+  if(history)history.style.display="block";
+  ensureDockMounted();
+  setDockActive("history");
+  window.scrollTo(0,0);
+}
+
+/* 建立真正的「選單」獨立頁，不再依賴藏在首頁裡的浮層 */
+function ensureSystemMenuPage(){
+  let page=document.getElementById("systemMenuPage");
+  if(page)return page;
+  page=document.createElement("section");
+  page.id="systemMenuPage";
+  page.className="page";
+  page.innerHTML=`
+    <div class="systemMenuHeader">
+      <h2>⚙ 系統選單</h2>
+      <p>其他管理功能集中在這裡。</p>
+    </div>
+    <div class="systemMenuGrid">
+      <button onclick="openRecentGoals();setDockActive('menu')">🕘<span>最近目標</span></button>
+      <button onclick="openChallenges();setDockActive('menu')">⏳<span>限時挑戰</span></button>
+      <button onclick="openMissed();setDockActive('menu')">⚠<span>未完成任務</span></button>
+      <button onclick="downloadJSONSave()">💾<span>備份存檔</span></button>
+      <button onclick="document.getElementById('importFile')?.click()">⇧<span>匯入存檔</span></button>
+      <button onclick="dockGoHome()">⌂<span>返回首頁</span></button>
+    </div>`;
+  document.querySelector("main").appendChild(page);
+  return page;
+}
+function dockGoMenu(){
+  closeLegacyMenu();
+  unlockAppScroll();
+  hideAllAppPages();
+  const page=ensureSystemMenuPage();
+  page.style.display="block";
+  ensureDockMounted();
+  setDockActive("menu");
+  window.scrollTo(0,0);
+}
+
+/* 保留既有 goHome 呼叫，但統一走 Dock 首頁 */
+goHome=dockGoHome;
+showGamePreview=dockGoHome;
+
+/* 點陣營：進入陣營頁，Dock 留在原位置，但不誤標成其他功能頁 */
+const v50OpenFaction = openFaction;
+openFaction=function(fi){
+  unlockAppScroll();
+  hideAllAppPages();
+  const result=v50OpenFaction(fi);
+  const page=document.getElementById("factionPage");
+  if(page)page.style.display="block";
+  ensureDockMounted();
+  setDockActive("");
+  window.scrollTo(0,0);
+  return result;
+};
+
+/* 點目標後仍屬於「目標」脈絡 */
+const v50OpenGoal = openGoal;
+openGoal=function(fi,gi){
+  unlockAppScroll();
+  const result=v50OpenGoal(fi,gi);
+  ensureDockMounted();
+  setDockActive("goals");
+  return result;
+};
+
+/* 載入後只初始化一次真正首頁 */
+setTimeout(()=>{
+  ensureDockMounted();
+  dockGoHome();
+},320);
+
+
+/* v5.1：選單恢復原本 7 個功能 */
+function ensureSystemMenuPage(){
+  let page=document.getElementById("systemMenuPage");
+  if(!page){
+    page=document.createElement("section");
+    page.id="systemMenuPage";
+    page.className="page";
+    document.querySelector("main").appendChild(page);
+  }
+  page.innerHTML=`
+    <div class="systemMenuHeader">
+      <h2>⚙ 系統選單</h2>
+      <p>原本的管理功能全部保留在這裡。</p>
+    </div>
+    <div class="systemMenuGrid">
+      <button onclick="menuOpenAllGoals()">🎯<span>全部目標</span></button>
+      <button onclick="menuOpenRecentGoals()">🕘<span>最近目標</span></button>
+      <button onclick="menuOpenChallenges()">⏳<span>限時挑戰</span></button>
+      <button onclick="menuOpenMissed()">⚠<span>未完成</span></button>
+      <button onclick="menuOpenHistory()">📜<span>完成紀錄</span></button>
+      <button onclick="downloadJSONSave()">💾<span>備份存檔</span></button>
+      <button onclick="document.getElementById('jsonImport')?.click()">⇧<span>匯入存檔</span></button>
+    </div>`;
+  return page;
+}
+
+function menuOpenAllGoals(){
+  unlockAppScroll();
+  openAllGoals();
+  ensureDockMounted();
+  setDockActive("goals");
+  window.scrollTo(0,0);
+}
+function menuOpenRecentGoals(){
+  unlockAppScroll();
+  openRecentGoals();
+  ensureDockMounted();
+  setDockActive("menu");
+  window.scrollTo(0,0);
+}
+function menuOpenMissed(){
+  unlockAppScroll();
+  openMissed();
+  ensureDockMounted();
+  setDockActive("menu");
+  window.scrollTo(0,0);
+}
+function menuOpenHistory(){
+  unlockAppScroll();
+  hideAllAppPages();
+  openHistory();
+  const page=document.getElementById("historyPage");
+  if(page)page.style.display="block";
+  ensureDockMounted();
+  setDockActive("history");
+  window.scrollTo(0,0);
+}
+
+/* 限時挑戰獨立頁 */
+function ensureStandaloneChallengePage(){
+  let page=document.getElementById("standaloneChallengePage");
+  if(page)return page;
+  page=document.createElement("section");
+  page.id="standaloneChallengePage";
+  page.className="page";
+  document.querySelector("main").appendChild(page);
+  return page;
+}
+function renderStandaloneChallenges(){
+  ensureChallenges();
+  const page=ensureStandaloneChallengePage();
+  const now=Date.now();
+  const cards=(s.challenges||[]).map(c=>{
+    const end=new Date(c.deadline);
+    const expired=end.getTime()<=now;
+    return `<div class="challengeCard ${expired?"expired":""}">
+      <div class="challengeTitle">${esc(c.title)}</div>
+      <div class="challengeDeadline">期限：${end.toLocaleString("zh-TW",{hour12:false})}</div>
+      <div class="countdown">
+        <div class="countdownLabel">剩餘時間</div>
+        <div class="countdownTime" data-challenge-deadline="${c.deadline}" data-challenge-id="${c.id}">${formatCountdown(end.getTime()-now)}</div>
+      </div>
+      <div class="challengeReward">🎁 ${c.reward?esc(c.reward):"未設定獎勵"}</div>
+      <div class="challengeActions">
+        ${!expired?`<button class="good" onclick="completeStandaloneChallenge(${c.id})">完成挑戰</button>`:""}
+        <button class="mini danger" onclick="deleteStandaloneChallenge(${c.id})">刪除</button>
+      </div>
+    </div>`;
+  }).join("");
+
+  page.innerHTML=`
+    <div class="challengePageWrap">
+      <h2>⏳ 限時挑戰</h2>
+      <div class="challengePageForm">
+        <input id="standaloneChallengeTitle" placeholder="挑戰內容">
+        <input id="standaloneChallengeDeadline" type="datetime-local">
+        <input id="standaloneChallengeReward" placeholder="自訂獎勵">
+        <button onclick="addStandaloneChallenge()">＋ 建立挑戰</button>
+      </div>
+      <div class="challengePageList">${cards||'<div class="drop">目前沒有進行中的限時挑戰。</div>'}</div>
+    </div>`;
+  updateCountdowns();
+}
+function menuOpenChallenges(){
+  unlockAppScroll();
+  hideAllAppPages();
+  const page=ensureStandaloneChallengePage();
+  page.style.display="block";
+  renderStandaloneChallenges();
+  ensureDockMounted();
+  setDockActive("menu");
+  window.scrollTo(0,0);
+}
+function addStandaloneChallenge(){
+  ensureChallenges();
+  const title=document.getElementById("standaloneChallengeTitle")?.value.trim();
+  const deadline=document.getElementById("standaloneChallengeDeadline")?.value;
+  const reward=document.getElementById("standaloneChallengeReward")?.value.trim()||"";
+  if(!title||!deadline){
+    alert("請填寫挑戰內容與期限");
+    return;
+  }
+  s.challenges.unshift({id:Date.now(),title,deadline,reward,done:false,completedAt:null});
+  save();
+  updateTopChallenge();
+  renderStandaloneChallenges();
+}
+function completeStandaloneChallenge(id){
+  completeChallenge(id);
+  setTimeout(()=>{
+    menuOpenChallenges();
+  },0);
+}
+function deleteStandaloneChallenge(id){
+  deleteChallenge(id);
+  setTimeout(()=>{
+    menuOpenChallenges();
+  },0);
+}
+
+/* 覆寫選單按鈕：永遠打開完整 7 選項頁 */
+function dockGoMenu(){
+  closeLegacyMenu();
+  unlockAppScroll();
+  hideAllAppPages();
+  const page=ensureSystemMenuPage();
+  page.style.display="block";
+  ensureDockMounted();
+  setDockActive("menu");
+  window.scrollTo(0,0);
+}
 
 </script>
 </body></html>
