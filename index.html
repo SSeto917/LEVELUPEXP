@@ -2630,48 +2630,6 @@ main>.gameDock.persistentDock{
   }
 }
 
-
-/* v6.6 效能優化 */
-
-/* 手機上 backdrop-filter 很容易造成捲動卡頓；改成不透明深色背景 */
-main>.gameDock.persistentDock,
-#gameHomePreview .gameDock{
-  backdrop-filter:none!important;
-  -webkit-backdrop-filter:none!important;
-  background:#07101d!important;
-}
-
-/* 減少大量離屏卡片的繪製成本 */
-.rosterTargetCard,
-.missionCard,
-.historyItem,
-.challengeCard,
-.goalDirectoryCard{
-  contain:layout paint style!important;
-  content-visibility:auto;
-  contain-intrinsic-size:160px 220px;
-}
-
-/* 避免 hover/transition 在觸控設備上造成額外合成 */
-@media(hover:none){
-  .rosterTargetCard,
-  .missionCard,
-  .gameFactionCard,
-  button{
-    transition:none!important;
-  }
-  .rosterTargetCard:hover,
-  .gameFactionCard:hover{
-    transform:none!important;
-  }
-}
-
-/* 固定頁面使用自己的滾動層，減少 body 重排 */
-main > section.appScreen{
-  overscroll-behavior:contain!important;
-  will-change:auto!important;
-}
-
 </style>
 
 <link rel="manifest" href="./manifest.webmanifest">
@@ -3226,7 +3184,7 @@ function renderChallenges(){
  }).join("");
  updateCountdowns();
 }
-/* v6.6: consolidated timer */
+setInterval(updateCountdowns,1000);
 function ensureHistory(){
  if(!Array.isArray(s.history))s.history=[];
  s.history.forEach((x,i)=>{if(x.id==null)x.id=Date.now()+i;if(x.restored==null)x.restored=false});
@@ -3500,7 +3458,7 @@ ensureChallenges();renderChallenges();
 goHome();
 
 updateTopChallenge();
-/* v6.6: legacy top challenge timer removed */
+setInterval(updateTopChallenge,1000);
 
 
 
@@ -3677,8 +3635,8 @@ function toggleGameMenu(){
  const x=document.getElementById("gameMenuSheet");if(!x)return;
  x.style.display=x.style.display==="none"?"block":"none";
 }
-/* v6.6: no longer rebuild the entire homepage every second */
-/* v6.6 removed duplicate startup navigation: setTimeout(showGamePreview,80); */
+setInterval(renderGamePreview,1000);
+setTimeout(showGamePreview,80);
 
 
 /* v4.0：手機首頁統一回到新的主畫面 */
@@ -3719,7 +3677,7 @@ render = function(){
 };
 
 /* Always start on the clean launcher. */
-/* v6.6 removed duplicate startup navigation: /* v6.6 removed duplicate startup navigation */ */
+setTimeout(showGamePreview,120);
 
 
 const v43ShowGamePreview = showGamePreview;
@@ -3745,7 +3703,7 @@ function unlockPageScroll(){
     };
   }
 });
-/* v6.6 removed duplicate startup navigation: /* v6.6 removed duplicate startup navigation */ */
+setTimeout(showGamePreview,150);
 
 
 /* v4.5 修復：首頁圖示真正切換到陣營獨立頁 */
@@ -3797,7 +3755,7 @@ goHome = function(){
   window.scrollTo(0,0);
 };
 
-/* v6.6 removed duplicate startup navigation: setTimeout(goHome,180); */
+setTimeout(goHome,180);
 
 
 /* v4.6 將首頁 Dock 提升為全站永久 Dock */
@@ -4602,76 +4560,6 @@ finishGoalTask = function(fi,gi,ti){
   v61FinishGoalTaskBase(fi,gi,ti);
   setTimeout(()=>openGoal(fi,gi),0);
 };
-
-
-/* v6.6 單一輕量計時器：
-   只更新文字，不再每秒重建七大陣營 DOM。 */
-function v66FormatHomeCountdown(ms){
-  ms=Math.max(0,ms);
-  let d=Math.floor(ms/86400000); ms%=86400000;
-  let hr=Math.floor(ms/3600000); ms%=3600000;
-  let m=Math.floor(ms/60000); ms%=60000;
-  let sec=Math.floor(ms/1000);
-  return `${d}天 ${String(hr).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
-}
-
-function v66UpdateHomeChallengeOnly(){
-  const home=document.getElementById("gameHomePreview");
-  const banner=document.getElementById("gameEventBanner");
-  if(!home || !banner || home.style.display==="none" || home.hidden)return;
-
-  const now=Date.now();
-  const active=(s.challenges||[])
-    .filter(c=>!c.done && c.deadline && new Date(c.deadline).getTime()>now)
-    .sort((a,b)=>new Date(a.deadline)-new Date(b.deadline))[0];
-
-  if(!active){
-    banner.classList.remove("isActive");
-    return;
-  }
-
-  banner.classList.add("isActive");
-
-  const title=document.getElementById("gameEventTitle");
-  const time=document.getElementById("gameEventTime");
-  if(title && title.textContent!==active.title) title.textContent=active.title;
-  if(time) time.textContent=v66FormatHomeCountdown(new Date(active.deadline).getTime()-now);
-}
-
-let v66Ticker=null;
-function v66StartTicker(){
-  if(v66Ticker!==null)return;
-  v66Ticker=setInterval(()=>{
-    if(document.hidden)return;
-
-    /* 挑戰功能頁：只更新已存在的倒數文字 */
-    if(typeof updateCountdowns==="function") updateCountdowns();
-
-    /* 首頁：只改 Banner 的文字，不重建陣營卡 */
-    v66UpdateHomeChallengeOnly();
-  },1000);
-}
-v66StartTicker();
-
-/* 切回分頁時才同步一次，而不是背景持續重繪 */
-document.addEventListener("visibilitychange",()=>{
-  if(!document.hidden){
-    v66UpdateHomeChallengeOnly();
-    if(typeof updateCountdowns==="function")updateCountdowns();
-  }
-});
-
-/* 首頁完整渲染只在真的進入首頁時執行一次 */
-const v66DockGoHome = typeof dockGoHome==="function" ? dockGoHome : null;
-if(v66DockGoHome){
-  dockGoHome=function(){
-    const result=v66DockGoHome.apply(this,arguments);
-    v66UpdateHomeChallengeOnly();
-    return result;
-  };
-  goHome=dockGoHome;
-  showGamePreview=dockGoHome;
-}
 
 </script>
 </body></html>
